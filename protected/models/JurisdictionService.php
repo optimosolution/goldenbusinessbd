@@ -52,6 +52,7 @@ class JurisdictionService extends CActiveRecord {
         return array(
             'district' => array(self::BELONGS_TO, 'JurisdictionDistrict', 'district_id'),
             'employer' => array(self::BELONGS_TO, 'JurisdictionEmployer', 'employer_id'),
+            'character' => array(self::BELONGS_TO, 'JurisdictionCharacter', 'character_id'),
             'zone0' => array(self::BELONGS_TO, 'JurisdictionZone', 'zone'),
             'circle0' => array(self::BELONGS_TO, 'JurisdictionCircle', 'circle'),
         );
