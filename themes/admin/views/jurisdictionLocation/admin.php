@@ -53,7 +53,6 @@ $('.search-form form').submit(function(){
                 'dataProvider' => $model->search(),
                 'filter' => $model,
                 'columns' => array(
-                    'id',
                     'locations',
                     array(
                         'class' => 'bootstrap.widgets.TbButtonColumn',

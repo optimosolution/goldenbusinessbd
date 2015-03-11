@@ -4,17 +4,25 @@
 ?>
 
 <?php
-$this->breadcrumbs=array(
-	'Jurisdiction Employers'=>array('index'),
-	'Create',
-);
-
-$this->menu=array(
-	array('label'=>'List JurisdictionEmployer', 'url'=>array('index')),
-	array('label'=>'Manage JurisdictionEmployer', 'url'=>array('admin')),
+$this->pageTitle = 'New Employers - ' . Yii::app()->name;
+$this->breadcrumbs = array(
+    'Employers' => array('admin'),
+    'Create',
 );
 ?>
-
-<h1>Create JurisdictionEmployer</h1>
-
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<div class="widget-box">
+    <div class="widget-header">
+        <h5>New Employers</h5>
+        <div class="widget-toolbar">
+            <a data-action="settings" href="#"><i class="icon-cog"></i></a>
+            <a data-action="reload" href="#"><i class="icon-refresh"></i></a>
+            <a data-action="collapse" href="#"><i class="icon-chevron-up"></i></a>
+            <a data-action="close" href="#"><i class="icon-remove"></i></a>
+        </div>
+    </div><!--/.widget-header -->
+    <div class="widget-body">
+        <div class="widget-main">
+            <?php $this->renderPartial('_form', array('model' => $model)); ?>
+        </div>
+    </div><!--/.widget-body -->
+</div><!--/.widget-box -->

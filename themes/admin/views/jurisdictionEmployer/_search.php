@@ -13,11 +13,7 @@
 
                     <?php echo $form->textFieldControlGroup($model,'id',array('span'=>5)); ?>
 
-                    <?php echo $form->textFieldControlGroup($model,'tax_employer',array('span'=>5,'maxlength'=>200)); ?>
-
-                    <?php echo $form->textFieldControlGroup($model,'tax_area',array('span'=>5)); ?>
-
-                    <?php echo $form->textFieldControlGroup($model,'character_id',array('span'=>5)); ?>
+                    <?php echo $form->textFieldControlGroup($model,'tax_employer',array('span'=>5,'maxlength'=>250)); ?>
 
         <div class="form-actions">
         <?php echo TbHtml::submitButton('Search',  array('color' => TbHtml::BUTTON_COLOR_PRIMARY,));?>
