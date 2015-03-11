@@ -4,29 +4,42 @@
 ?>
 
 <?php
-$this->breadcrumbs=array(
-	'Jurisdiction Districts'=>array('index'),
-	$model->id,
-);
-
-$this->menu=array(
-	array('label'=>'List JurisdictionDistrict', 'url'=>array('index')),
-	array('label'=>'Create JurisdictionDistrict', 'url'=>array('create')),
-	array('label'=>'Update JurisdictionDistrict', 'url'=>array('update', 'id'=>$model->id)),
-	array('label'=>'Delete JurisdictionDistrict', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage JurisdictionDistrict', 'url'=>array('admin')),
+$this->pageTitle = 'Tax Area details - ' . Yii::app()->name;
+$this->breadcrumbs = array(
+    'Tax Areas' => array('admin'),
+    $model->id,
 );
 ?>
-
-<h1>View JurisdictionDistrict #<?php echo $model->id; ?></h1>
-
-<?php $this->widget('zii.widgets.CDetailView',array(
-    'htmlOptions' => array(
-        'class' => 'table table-striped table-condensed table-hover',
-    ),
-    'data'=>$model,
-    'attributes'=>array(
-		'id',
-		'taxes_area',
-	),
-)); ?>
+<div class="widget-box">
+    <div class="widget-header">
+        <h5>Details Tax Area (<?php echo $model->taxes_area; ?>)</h5>
+        <div class="widget-toolbar">
+            <a data-action="settings" href="#"><i class="icon-cog"></i></a>
+            <a data-action="reload" href="#"><i class="icon-refresh"></i></a>
+            <a data-action="collapse" href="#"><i class="icon-chevron-up"></i></a>
+            <a data-action="close" href="#"><i class="icon-remove"></i></a>
+        </div>
+        <div class="widget-toolbar">
+            <?php echo CHtml::link('<i class="icon-pencil"></i>', array('update', 'id' => $model->id), array('data-rel' => 'tooltip', 'title' => 'Edit', 'data-placement' => 'bottom')); ?>
+        </div>
+        <div class="widget-toolbar">
+            <?php echo CHtml::link('<i class="icon-plus"></i>', array('create'), array('data-rel' => 'tooltip', 'title' => 'Add', 'data-placement' => 'bottom')); ?>
+        </div>
+    </div><!--/.widget-header -->
+    <div class="widget-body">
+        <div class="widget-main">
+            <?php
+            $this->widget('zii.widgets.CDetailView', array(
+                'htmlOptions' => array(
+                    'class' => 'table table-striped table-condensed table-hover',
+                ),
+                'data' => $model,
+                'attributes' => array(
+                    'id',
+                    'taxes_area',
+                ),
+            ));
+            ?>
+        </div>
+    </div><!--/.widget-body -->
+</div><!--/.widget-box -->

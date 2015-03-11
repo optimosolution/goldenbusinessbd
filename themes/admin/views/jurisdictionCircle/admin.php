@@ -2,15 +2,10 @@
 /* @var $this JurisdictionCircleController */
 /* @var $model JurisdictionCircle */
 
-
-$this->breadcrumbs=array(
-	'Jurisdiction Circles'=>array('index'),
-	'Manage',
-);
-
-$this->menu=array(
-	array('label'=>'List JurisdictionCircle', 'url'=>array('index')),
-	array('label'=>'Create JurisdictionCircle', 'url'=>array('create')),
+$this->pageTitle = 'Circles - ' . Yii::app()->name;
+$this->breadcrumbs = array(
+    'Circles' => array('admin'),
+    'Manage',
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -26,33 +21,53 @@ $('.search-form form').submit(function(){
 });
 ");
 ?>
+<div class="widget-box">
+    <div class="widget-header">
+        <h5>Manage Circles</h5>
+        <div class="widget-toolbar">
+            <a data-action="settings" href="#"><i class="icon-cog"></i></a>
+            <a data-action="reload" href="#"><i class="icon-refresh"></i></a>
+            <a data-action="collapse" href="#"><i class="icon-chevron-up"></i></a>
+            <a data-action="close" href="#"><i class="icon-remove"></i></a>
+        </div>
+        <div class="widget-toolbar">
+            <?php echo CHtml::link('<i class="icon-plus"></i>', array('create'), array('data-rel' => 'tooltip', 'title' => 'Add', 'data-placement' => 'bottom')); ?>
+        </div>
+        <div class="widget-toolbar">
+            <?php echo CHtml::link('<i class="icon-search"></i>', '#', array('class' => 'search-button', 'data-rel' => 'tooltip', 'title' => 'Search', 'data-placement' => 'bottom')); ?>
+        </div>
+    </div><!--/.widget-header -->
+    <div class="widget-body">
+        <div class="widget-main">
+            <div class="search-form" style="display:none">
+                <?php
+                $this->renderPartial('_search', array(
+                    'model' => $model,
+                ));
+                ?>
+            </div><!-- search-form -->
 
-<h1>Manage Jurisdiction Circles</h1>
-
-<p>
-    You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>
-        &lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
-
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button btn')); ?>
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
-
-<?php $this->widget('bootstrap.widgets.TbGridView',array(
-	'id'=>'jurisdiction-circle-grid',
-	'dataProvider'=>$model->search(),
-	'filter'=>$model,
-	'columns'=>array(
-		'id',
-		'zone_id',
-		'tax_taxes_circle',
-		'address',
-		array(
-			'class'=>'bootstrap.widgets.TbButtonColumn',
-		),
-	),
-)); ?>
+            <?php
+            $this->widget('bootstrap.widgets.TbGridView', array(
+                'id' => 'jurisdiction-circle-grid',
+                'dataProvider' => $model->search(),
+                'filter' => $model,
+                'columns' => array(
+                    array(
+                        'name' => 'zone_id',
+                        'type' => 'raw',
+                        'value' => 'JurisdictionZone::get_title($data->zone_id)',
+                        'filter' => CHtml::activeDropDownList($model, 'zone_id', CHtml::listData(JurisdictionZone::model()->findAll(array('condition' => '', 'order' => 'tax_taxes_zone')), 'id', 'tax_taxes_zone'), array('empty' => 'All', 'class' => 'select2')),
+                        'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Zone'),
+                    ),
+                    'tax_taxes_circle',
+                    'address',
+                    array(
+                        'class' => 'bootstrap.widgets.TbButtonColumn',
+                    ),
+                ),
+            ));
+            ?>
+        </div>
+    </div><!--/.widget-body -->
+</div><!--/.widget-box -->

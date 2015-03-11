@@ -4,20 +4,32 @@
 ?>
 
 <?php
-$this->breadcrumbs=array(
-	'Jurisdiction Business Types'=>array('index'),
-	$model->id=>array('view','id'=>$model->id),
-	'Update',
-);
-
-$this->menu=array(
-	array('label'=>'List JurisdictionBusinessType', 'url'=>array('index')),
-	array('label'=>'Create JurisdictionBusinessType', 'url'=>array('create')),
-	array('label'=>'View JurisdictionBusinessType', 'url'=>array('view', 'id'=>$model->id)),
-	array('label'=>'Manage JurisdictionBusinessType', 'url'=>array('admin')),
+$this->pageTitle = 'Edit Business Type - ' . Yii::app()->name;
+$this->breadcrumbs = array(
+    'Business Types' => array('admin'),
+    $model->business => array('view', 'id' => $model->id),
+    'Update',
 );
 ?>
-
-    <h1>Update JurisdictionBusinessType <?php echo $model->id; ?></h1>
-
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<div class="widget-box">
+    <div class="widget-header">
+        <h5>Edit Business Type (<?php echo $model->business; ?>)</h5>
+        <div class="widget-toolbar">
+            <a data-action="settings" href="#"><i class="icon-cog"></i></a>
+            <a data-action="reload" href="#"><i class="icon-refresh"></i></a>
+            <a data-action="collapse" href="#"><i class="icon-chevron-up"></i></a>
+            <a data-action="close" href="#"><i class="icon-remove"></i></a>
+        </div>
+        <div class="widget-toolbar">
+            <?php echo CHtml::link('<i class="icon-eye-open"></i>', array('view', 'id' => $model->id), array('data-rel' => 'tooltip', 'title' => 'Details', 'data-placement' => 'bottom')); ?>
+        </div>
+        <div class="widget-toolbar">
+            <?php echo CHtml::link('<i class="icon-plus"></i>', array('create'), array('data-rel' => 'tooltip', 'title' => 'Add', 'data-placement' => 'bottom')); ?>
+        </div>
+    </div><!--/.widget-header -->
+    <div class="widget-body">
+        <div class="widget-main">
+            <?php $this->renderPartial('_form', array('model' => $model)); ?>
+        </div>
+    </div><!--/.widget-body -->
+</div><!--/.widget-box -->
