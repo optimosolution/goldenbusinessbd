@@ -1,11 +1,11 @@
 <?php
-/* @var $this JurisdictionCircleController */
-/* @var $model JurisdictionCircle */
+/* @var $this JurisdictionRangeController */
+/* @var $model JurisdictionRange */
 /* @var $form TbActiveForm */
 ?>
 <?php
 $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
-    'id' => 'jurisdiction-circle-form',
+    'id' => 'jurisdiction-range-form',
     // Please note: When you enable ajax validation, make sure the corresponding
     // controller action is handling ajax validation correctly.
     // There is a call to performAjaxValidation() commented in generated controller code.
@@ -15,16 +15,8 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 ?>
 <p class="help-block">Fields with <span class="required">*</span> are required.</p>
 <?php echo $form->errorSummary($model); ?>
-<?php echo $form->dropDownListControlGroup($model, 'zone_id', CHtml::listData(JurisdictionZone::model()->findAll(array('condition' => '', "order" => "tax_taxes_zone")), 'id', 'tax_taxes_zone'), array('empty' => '--please select--', 'class' => 'span5')); ?>
-<div class="row-fluid">
-    <div class="span5">
-        <?php echo $form->labelEx($model, 'ranges'); ?>
-        <?php echo JurisdictionRange::get_range_list('JurisdictionCircle', 'ranges', $model->ranges); ?>
-    </div>
-</div>
-<?php echo $form->textFieldControlGroup($model, 'tax_taxes_circle', array('span' => 5, 'maxlength' => 200)); ?>
-<?php echo $form->textAreaControlGroup($model, 'address', array('rows' => 2, 'span' => 5)); ?>
-
+<?php echo $form->dropDownListControlGroup($model, 'zone', CHtml::listData(JurisdictionZone::model()->findAll(array('condition' => '', "order" => "tax_taxes_zone")), 'id', 'tax_taxes_zone'), array('empty' => '--please select--', 'class' => 'span5')); ?>
+<?php echo $form->textFieldControlGroup($model, 'title', array('span' => 5, 'maxlength' => 250)); ?>
 <div class="form-actions">
     <?php
     echo TbHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array(

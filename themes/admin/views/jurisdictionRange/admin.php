@@ -1,12 +1,13 @@
 <?php
-/* @var $this JurisdictionCircleController */
-/* @var $model JurisdictionCircle */
+/* @var $this JurisdictionRangeController */
+/* @var $model JurisdictionRange */
 
-$this->pageTitle = 'Circles - ' . Yii::app()->name;
+$this->pageTitle = 'Ranges - ' . Yii::app()->name;
 $this->breadcrumbs = array(
-    'Circles' => array('admin'),
+    'Ranges' => array('admin'),
     'Manage',
 );
+
 
 Yii::app()->clientScript->registerScript('search', "
 $('.search-button').click(function(){
@@ -14,7 +15,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#jurisdiction-circle-grid').yiiGridView('update', {
+	$('#jurisdiction-range-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -23,7 +24,7 @@ $('.search-form form').submit(function(){
 ?>
 <div class="widget-box">
     <div class="widget-header">
-        <h5>Manage Circles</h5>
+        <h5>Manage Ranges</h5>
         <div class="widget-toolbar">
             <a data-action="settings" href="#"><i class="icon-cog"></i></a>
             <a data-action="reload" href="#"><i class="icon-refresh"></i></a>
@@ -49,26 +50,18 @@ $('.search-form form').submit(function(){
 
             <?php
             $this->widget('bootstrap.widgets.TbGridView', array(
-                'id' => 'jurisdiction-circle-grid',
+                'id' => 'jurisdiction-range-grid',
                 'dataProvider' => $model->search(),
                 'filter' => $model,
                 'columns' => array(
                     array(
-                        'name' => 'zone_id',
+                        'name' => 'zone',
                         'type' => 'raw',
-                        'value' => 'JurisdictionZone::get_title($data->zone_id)',
-                        'filter' => CHtml::activeDropDownList($model, 'zone_id', CHtml::listData(JurisdictionZone::model()->findAll(array('condition' => '', 'order' => 'tax_taxes_zone')), 'id', 'tax_taxes_zone'), array('empty' => 'All', 'class' => 'select2')),
+                        'value' => '$data->zone0->tax_taxes_zone',
+                        'filter' => CHtml::activeDropDownList($model, 'zone', CHtml::listData(JurisdictionZone::model()->findAll(array('condition' => '', "order" => "tax_taxes_zone")), 'id', 'tax_taxes_zone'), array('empty' => 'All')),
                         'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Zone'),
                     ),
-                    array(
-                        'name' => 'ranges',
-                        'type' => 'raw',
-                        'value' => 'JurisdictionRange::get_title($data->ranges)',
-                        'filter' => CHtml::activeDropDownList($model, 'ranges', CHtml::listData(JurisdictionRange::model()->findAll(array('condition' => '', 'order' => 'title')), 'id', 'title'), array('empty' => 'All', 'class' => 'select2')),
-                        'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Ranges'),
-                    ),
-                    'tax_taxes_circle',
-                    'address',
+                    'title',
                     array(
                         'class' => 'bootstrap.widgets.TbButtonColumn',
                     ),

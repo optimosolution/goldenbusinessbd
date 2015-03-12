@@ -1,24 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "{{jurisdiction_circle}}".
+ * This is the model class for table "{{jurisdiction_range}}".
  *
- * The followings are the available columns in table '{{jurisdiction_circle}}':
+ * The followings are the available columns in table '{{jurisdiction_range}}':
  * @property integer $id
- * @property integer $zone_id
- * @property string $tax_taxes_circle
- * @property string $address
+ * @property integer $zone
+ * @property string $title
  *
  * The followings are the available model relations:
- * @property JurisdictionZone $zone
+ * @property JurisdictionZone $zone0
  */
-class JurisdictionCircle extends CActiveRecord {
+class JurisdictionRange extends CActiveRecord {
 
     /**
      * @return string the associated database table name
      */
     public function tableName() {
-        return '{{jurisdiction_circle}}';
+        return '{{jurisdiction_range}}';
     }
 
     /**
@@ -28,12 +27,12 @@ class JurisdictionCircle extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('zone_id, tax_taxes_circle, address', 'required'),
-            array('zone_id, ranges', 'numerical', 'integerOnly' => true),
-            array('tax_taxes_circle', 'length', 'max' => 200),
+            array('zone, title', 'required'),
+            array('zone', 'numerical', 'integerOnly' => true),
+            array('title', 'length', 'max' => 250),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, zone_id, ranges, tax_taxes_circle, address', 'safe', 'on' => 'search'),
+            array('id, zone, title', 'safe', 'on' => 'search'),
         );
     }
 
@@ -44,7 +43,7 @@ class JurisdictionCircle extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'zone' => array(self::BELONGS_TO, 'JurisdictionZone', 'zone_id'),
+            'zone0' => array(self::BELONGS_TO, 'JurisdictionZone', 'zone'),
         );
     }
 
@@ -54,10 +53,8 @@ class JurisdictionCircle extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'zone_id' => 'Zone',
-            'ranges' => 'Ranges',
-            'tax_taxes_circle' => 'Circle',
-            'address' => 'Address',
+            'zone' => 'Zone',
+            'title' => 'Range',
         );
     }
 
@@ -79,16 +76,11 @@ class JurisdictionCircle extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('zone_id', $this->zone_id);
-        $criteria->compare('ranges', $this->ranges);
-        $criteria->compare('tax_taxes_circle', $this->tax_taxes_circle, true);
-        $criteria->compare('address', $this->address, true);
+        $criteria->compare('zone', $this->zone);
+        $criteria->compare('title', $this->title, true);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
-            'pagination' => array(
-                'pageSize' => Yii::app()->params['pageSize50'],
-            ),
         ));
     }
 
@@ -96,10 +88,37 @@ class JurisdictionCircle extends CActiveRecord {
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return JurisdictionCircle the static model class
+     * @return JurisdictionRange the static model class
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);
+    }
+
+    public static function get_title($id) {
+        $value = JurisdictionRange::model()->findByAttributes(array('id' => $id));
+        if (empty($value->title)) {
+            return null;
+        } else {
+            return $value->title;
+        }
+    }
+    
+    public static function get_range_list($controller, $field, $id) {
+        $rValue = Yii::app()->db->createCommand()
+                ->select('id,zone,title')
+                ->from('{{jurisdiction_range}}')
+                ->order('title')
+                ->queryAll();
+        echo '<select id="' . $controller . '_' . $field . '" name="' . $controller . '[' . $field . ']" class="span12">';
+        echo '<option value="">--select range--</option>';
+        foreach ($rValue as $key => $values) {
+            if ($values["id"] == $id) {
+                echo '<option selected="selected" value="' . $values["id"] . '" class="' . $values["zone"] . '">' . $values["title"] . '</option>';
+            } else {
+                echo '<option value="' . $values["id"] . '" class="' . $values["zone"] . '">' . $values["title"] . '</option>';
+            }
+        }
+        echo '</select>';
     }
 
 }

@@ -1,24 +1,19 @@
 <?php
-/* @var $this JurisdictionCircleController */
-/* @var $model JurisdictionCircle */
+/* @var $this JurisdictionRangeController */
+/* @var $model JurisdictionRange */
 ?>
 
 <?php
-$this->pageTitle = 'Edit Circle - ' . Yii::app()->name;
+$this->pageTitle = 'Edit Ranges - ' . Yii::app()->name;
 $this->breadcrumbs = array(
-    'Circles' => array('admin'),
-    $model->tax_taxes_circle => array('view', 'id' => $model->id),
+    'Ranges' => array('admin'),
+    $model->title => array('view', 'id' => $model->id),
     'Update',
 );
-$cs = Yii::app()->getClientScript();
-$cs->registerScriptFile(Yii::app()->theme->baseUrl . '/assets/js/jquery.chained.js', CClientScript::POS_END);
-Yii::app()->clientScript->registerScript('chain-select', " 
-$('#JurisdictionCircle_ranges').chained('#JurisdictionCircle_zone_id');
-");
 ?>
 <div class="widget-box">
     <div class="widget-header">
-        <h5>Edit Circle (<?php echo $model->tax_taxes_circle; ?>)</h5>
+        <h5>Edit Ranges</h5>
         <div class="widget-toolbar">
             <a data-action="settings" href="#"><i class="icon-cog"></i></a>
             <a data-action="reload" href="#"><i class="icon-refresh"></i></a>

@@ -1,24 +1,18 @@
 <?php
-/* @var $this JurisdictionCircleController */
-/* @var $model JurisdictionCircle */
+/* @var $this JurisdictionRangeController */
+/* @var $model JurisdictionRange */
 ?>
 
 <?php
-$this->pageTitle = 'Edit Circle - ' . Yii::app()->name;
+$this->pageTitle = 'Ranges details - ' . Yii::app()->name;
 $this->breadcrumbs = array(
-    'Circles' => array('admin'),
-    $model->tax_taxes_circle => array('view', 'id' => $model->id),
-    'Update',
+    'Ranges' => array('admin'),
+    $model->title,
 );
-$cs = Yii::app()->getClientScript();
-$cs->registerScriptFile(Yii::app()->theme->baseUrl . '/assets/js/jquery.chained.js', CClientScript::POS_END);
-Yii::app()->clientScript->registerScript('chain-select', " 
-$('#JurisdictionCircle_ranges').chained('#JurisdictionCircle_zone_id');
-");
 ?>
 <div class="widget-box">
     <div class="widget-header">
-        <h5>Edit Circle (<?php echo $model->tax_taxes_circle; ?>)</h5>
+        <h5>Details Ranges</h5>
         <div class="widget-toolbar">
             <a data-action="settings" href="#"><i class="icon-cog"></i></a>
             <a data-action="reload" href="#"><i class="icon-refresh"></i></a>
@@ -26,7 +20,7 @@ $('#JurisdictionCircle_ranges').chained('#JurisdictionCircle_zone_id');
             <a data-action="close" href="#"><i class="icon-remove"></i></a>
         </div>
         <div class="widget-toolbar">
-            <?php echo CHtml::link('<i class="icon-eye-open"></i>', array('view', 'id' => $model->id), array('data-rel' => 'tooltip', 'title' => 'Details', 'data-placement' => 'bottom')); ?>
+            <?php echo CHtml::link('<i class="icon-pencil"></i>', array('update', 'id' => $model->id), array('data-rel' => 'tooltip', 'title' => 'Edit', 'data-placement' => 'bottom')); ?>
         </div>
         <div class="widget-toolbar">
             <?php echo CHtml::link('<i class="icon-plus"></i>', array('create'), array('data-rel' => 'tooltip', 'title' => 'Add', 'data-placement' => 'bottom')); ?>
@@ -34,7 +28,19 @@ $('#JurisdictionCircle_ranges').chained('#JurisdictionCircle_zone_id');
     </div><!--/.widget-header -->
     <div class="widget-body">
         <div class="widget-main">
-            <?php $this->renderPartial('_form', array('model' => $model)); ?>
+            <?php
+            $this->widget('zii.widgets.CDetailView', array(
+                'htmlOptions' => array(
+                    'class' => 'table table-striped table-condensed table-hover',
+                ),
+                'data' => $model,
+                'attributes' => array(
+                    'id',
+                    'zone',
+                    'title',
+                ),
+            ));
+            ?>
         </div>
     </div><!--/.widget-body -->
 </div><!--/.widget-box -->
