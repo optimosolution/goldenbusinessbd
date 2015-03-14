@@ -5,19 +5,20 @@
  *
  * The followings are the available columns in table '{{jurisdiction_profession}}':
  * @property integer $id
- * @property integer $district_id
- * @property integer $profession_id
- * @property integer $character_id
- * @property string $assessee
- * @property integer $circle
+ * @property integer $income_source
+ * @property integer $district
+ * @property integer $profession_type
+ * @property string $letter_specific_name
  * @property integer $zone
+ * @property integer $range
+ * @property integer $circle
  *
  * The followings are the available model relations:
- * @property JurisdictionDistrict $district
- * @property JurisdictionProfessionType $profession
- * @property JurisdictionCharacter $character
- * @property JurisdictionCircle $circle0
+ * @property JurisdictionIncomeSource $incomeSource
+ * @property JurisdictionDistrict $district0
+ * @property JurisdictionProfessionType $professionType
  * @property JurisdictionZone $zone0
+ * @property JurisdictionCircle $circle0
  */
 class JurisdictionProfession extends CActiveRecord {
 
@@ -35,11 +36,12 @@ class JurisdictionProfession extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('district_id, profession_id, character_id, circle, zone', 'numerical', 'integerOnly' => true),
-            array('assessee', 'length', 'max' => 255),
+            array('income_source, district, profession_type, zone, circle', 'required'),
+            array('income_source, district, profession_type, zone, range, circle', 'numerical', 'integerOnly' => true),
+            array('letter_specific_name', 'length', 'max' => 255),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, district_id, profession_id, character_id, assessee, circle, zone', 'safe', 'on' => 'search'),
+            array('id, income_source, district, profession_type, letter_specific_name, zone, range, circle', 'safe', 'on' => 'search'),
         );
     }
 
@@ -50,11 +52,11 @@ class JurisdictionProfession extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'district' => array(self::BELONGS_TO, 'JurisdictionDistrict', 'district_id'),
-            'profession' => array(self::BELONGS_TO, 'JurisdictionProfessionType', 'profession_id'),
-            'character' => array(self::BELONGS_TO, 'JurisdictionCharacter', 'character_id'),
-            'circle0' => array(self::BELONGS_TO, 'JurisdictionCircle', 'circle'),
+            'incomeSource' => array(self::BELONGS_TO, 'JurisdictionIncomeSource', 'income_source'),
+            'district0' => array(self::BELONGS_TO, 'JurisdictionDistrict', 'district'),
+            'professionType' => array(self::BELONGS_TO, 'JurisdictionProfessionType', 'profession_type'),
             'zone0' => array(self::BELONGS_TO, 'JurisdictionZone', 'zone'),
+            'circle0' => array(self::BELONGS_TO, 'JurisdictionCircle', 'circle'),
         );
     }
 
@@ -64,12 +66,13 @@ class JurisdictionProfession extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'district_id' => 'District',
-            'profession_id' => 'Profession Type',
-            'character_id' => 'Character',
-            'assessee' => 'Assessee',
-            'circle' => 'Circle',
+            'income_source' => 'Income Source',
+            'district' => 'District',
+            'profession_type' => 'Profession Type/ Location',
+            'letter_specific_name' => 'Letter or Specific Name',
             'zone' => 'Zone',
+            'range' => 'Range',
+            'circle' => 'Circle',
         );
     }
 
@@ -91,12 +94,13 @@ class JurisdictionProfession extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('district_id', $this->district_id);
-        $criteria->compare('profession_id', $this->profession_id);
-        $criteria->compare('character_id', $this->character_id);
-        $criteria->compare('assessee', $this->assessee, true);
-        $criteria->compare('circle', $this->circle);
+        $criteria->compare('income_source', $this->income_source);
+        $criteria->compare('district', $this->district);
+        $criteria->compare('profession_type', $this->profession_type);
+        $criteria->compare('letter_specific_name', $this->letter_specific_name, true);
         $criteria->compare('zone', $this->zone);
+        $criteria->compare('range', $this->range);
+        $criteria->compare('circle', $this->circle);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

@@ -38,28 +38,41 @@ $('.search-form form').submit(function(){
         </div>
     </div><!--/.widget-header -->
     <div class="widget-body">
-        <div class="widget-main">
-            <div class="search-form" style="display:none">
-                <?php
-                $this->renderPartial('_search', array(
-                    'model' => $model,
-                ));
-                ?>
-            </div><!-- search-form -->
-
+        <div class="search-form" style="display:none">
             <?php
-            $this->widget('bootstrap.widgets.TbGridView', array(
-                'id' => 'jurisdiction-profession-type-grid',
-                'dataProvider' => $model->search(),
-                'filter' => $model,
-                'columns' => array(
-                    'profession_type',
-                    array(
-                        'class' => 'bootstrap.widgets.TbButtonColumn',
-                    ),
-                ),
+            $this->renderPartial('_search', array(
+                'model' => $model,
             ));
             ?>
-        </div>
-    </div><!--/.widget-body -->
+        </div><!-- search-form -->
+
+        <?php
+        $this->widget('bootstrap.widgets.TbGridView', array(
+            'id' => 'jurisdiction-profession-type-grid',
+            'dataProvider' => $model->search(),
+            'filter' => $model,
+            'columns' => array(
+                array(
+                    'name' => 'income_source',
+                    'type' => 'raw',
+                    'value' => '$data->incomeSource->title',
+                    'filter' => CHtml::activeDropDownList($model, 'income_source', CHtml::listData(JurisdictionIncomeSource::model()->findAll(array('condition' => '', 'order' => 'title')), 'id', 'title'), array('empty' => 'All', 'class' => 'select2')),
+                    'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Income Source'),
+                ),
+                array(
+                    'name' => 'district',
+                    'type' => 'raw',
+                    'value' => '$data->district0->taxes_area',
+                    'filter' => CHtml::activeDropDownList($model, 'district', CHtml::listData(JurisdictionDistrict::model()->findAll(array('condition' => '', 'order' => 'taxes_area')), 'id', 'taxes_area'), array('empty' => 'All', 'class' => 'select2')),
+                    'htmlOptions' => array('style' => "text-align:left;", 'title' => 'District'),
+                ),
+                'title',
+                array(
+                    'class' => 'bootstrap.widgets.TbButtonColumn',
+                ),
+            ),
+        ));
+        ?>
+    </div>
+</div><!--/.widget-body -->
 </div><!--/.widget-box -->

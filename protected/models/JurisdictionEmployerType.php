@@ -30,7 +30,7 @@ class JurisdictionEmployerType extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('title', 'required'),
+            array('income_source, district, title', 'required'),
             array('income_source, district', 'numerical', 'integerOnly' => true),
             array('title', 'length', 'max' => 250),
             // The following rule is used by search().
@@ -46,7 +46,7 @@ class JurisdictionEmployerType extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            //'jurisdictionCharacters' => array(self::HAS_MANY, 'JurisdictionCharacter', 'employer_type'),
+            'jurisdictionCharacters' => array(self::HAS_MANY, 'JurisdictionCharacter', 'employer_type'),
             'incomeSource' => array(self::BELONGS_TO, 'JurisdictionIncomeSource', 'income_source'),
             'district0' => array(self::BELONGS_TO, 'JurisdictionDistrict', 'district'),
         );
@@ -100,7 +100,7 @@ class JurisdictionEmployerType extends CActiveRecord {
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
-    
+
     public static function get_type_list($controller, $field, $id) {
         $rValue = Yii::app()->db->createCommand()
                 ->select('id,district,title')

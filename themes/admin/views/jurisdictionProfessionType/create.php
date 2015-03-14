@@ -4,11 +4,11 @@
 ?>
 
 <?php
-$this->pageTitle = 'New Profession Type - ' . Yii::app()->name;
-$this->breadcrumbs = array(
-    'Profession Types' => array('admin'),
-    'Create',
+$this->breadcrumbs=array(
+	'Profession Types'=>array('admin'),
+	'Create',
 );
+
 ?>
 <div class="widget-box">
     <div class="widget-header">

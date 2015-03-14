@@ -4,15 +4,15 @@
 ?>
 
 <?php
-$this->pageTitle = 'Profession Type details - ' . Yii::app()->name;
 $this->breadcrumbs = array(
     'Profession Types' => array('admin'),
-    $model->profession_type,
+    $model->title,
 );
 ?>
+
 <div class="widget-box">
     <div class="widget-header">
-        <h5>Details Profession Type (<?php echo $model->profession_type; ?>)</h5>
+        <h5>Details Employer Type </h5>
         <div class="widget-toolbar">
             <a data-action="settings" href="#"><i class="icon-cog"></i></a>
             <a data-action="reload" href="#"><i class="icon-refresh"></i></a>
@@ -36,7 +36,17 @@ $this->breadcrumbs = array(
                 'data' => $model,
                 'attributes' => array(
                     'id',
-                    'profession_type',
+                    array(
+                        'name' => 'income_source',
+                        'type' => 'raw',
+                        'value' => $model->incomeSource->title,
+                    ),
+                    array(
+                        'name' => 'district',
+                        'type' => 'raw',
+                        'value' => $model->district0->taxes_area,
+                    ),
+                    'title',
                 ),
             ));
             ?>

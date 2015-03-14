@@ -37,7 +37,6 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         <?php echo JurisdictionCircle::get_cicle_list('JurisdictionService', 'circle', $model->circle); ?>
     </div>
 </div>
-
 <div class="form-actions">
     <?php
     echo TbHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array(

@@ -57,7 +57,11 @@ $this->breadcrumbs = array(
                         'type' => 'raw',
                         'value' => $model->zone0->tax_taxes_zone,
                     ),
-                    'range',
+                    array(
+                        'name' => 'range',
+                        'type' => 'raw',
+                        'value' => JurisdictionRange::get_title($model->range),
+                    ),
                     array(
                         'name' => 'circle',
                         'type' => 'raw',
