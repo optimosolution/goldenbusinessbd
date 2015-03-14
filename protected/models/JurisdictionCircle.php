@@ -101,7 +101,7 @@ class JurisdictionCircle extends CActiveRecord {
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
-    
+
     public static function get_cicle_list($controller, $field, $id) {
         $rValue = Yii::app()->db->createCommand()
                 ->select('id,zone_id,tax_taxes_circle')
@@ -118,6 +118,15 @@ class JurisdictionCircle extends CActiveRecord {
             }
         }
         echo '</select>';
+    }
+
+    public static function get_address($id) {
+        $value = JurisdictionCircle::model()->findByAttributes(array('id' => $id));
+        if (empty($value->address)) {
+            return null;
+        } else {
+            return $value->address;
+        }
     }
 
 }
