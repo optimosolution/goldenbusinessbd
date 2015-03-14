@@ -1,6 +1,6 @@
 <?php
-/* @var $this JurisdictionServiceController */
-/* @var $model JurisdictionService */
+/* @var $this JurisdictionEmployerTypeController */
+/* @var $model JurisdictionEmployerType */
 /* @var $form CActiveForm */
 ?>
 
@@ -17,15 +17,7 @@
 
                     <?php echo $form->textFieldControlGroup($model,'district',array('span'=>5)); ?>
 
-                    <?php echo $form->textFieldControlGroup($model,'employer_type',array('span'=>5)); ?>
-
-                    <?php echo $form->textFieldControlGroup($model,'letter_specific_name',array('span'=>5)); ?>
-
-                    <?php echo $form->textFieldControlGroup($model,'zone',array('span'=>5)); ?>
-
-                    <?php echo $form->textFieldControlGroup($model,'range',array('span'=>5)); ?>
-
-                    <?php echo $form->textFieldControlGroup($model,'circle',array('span'=>5)); ?>
+                    <?php echo $form->textFieldControlGroup($model,'title',array('span'=>5,'maxlength'=>250)); ?>
 
         <div class="form-actions">
         <?php echo TbHtml::submitButton('Search',  array('color' => TbHtml::BUTTON_COLOR_PRIMARY,));?>

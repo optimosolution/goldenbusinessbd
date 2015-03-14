@@ -1,10 +1,10 @@
 <?php
-/* @var $this JurisdictionServiceController */
-/* @var $model JurisdictionService */
+/* @var $this JurisdictionEmployerTypeController */
+/* @var $model JurisdictionEmployerType */
 
-$this->pageTitle = 'Services - ' . Yii::app()->name;
+$this->pageTitle = 'Employer Types - ' . Yii::app()->name;
 $this->breadcrumbs = array(
-    'Services' => array('admin'),
+    'Employer Types' => array('admin'),
     'Manage',
 );
 
@@ -14,7 +14,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#jurisdiction-service-grid').yiiGridView('update', {
+	$('#jurisdiction-employer-type-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -23,7 +23,7 @@ $('.search-form form').submit(function(){
 ?>
 <div class="widget-box">
     <div class="widget-header">
-        <h5>Manage Circles</h5>
+        <h5>Manage Employer Types</h5>
         <div class="widget-toolbar">
             <a data-action="settings" href="#"><i class="icon-cog"></i></a>
             <a data-action="reload" href="#"><i class="icon-refresh"></i></a>
@@ -49,7 +49,7 @@ $('.search-form form').submit(function(){
 
             <?php
             $this->widget('bootstrap.widgets.TbGridView', array(
-                'id' => 'jurisdiction-service-grid',
+                'id' => 'jurisdiction-employer-type-grid',
                 'dataProvider' => $model->search(),
                 'filter' => $model,
                 'columns' => array(
@@ -67,35 +67,7 @@ $('.search-form form').submit(function(){
                         'filter' => CHtml::activeDropDownList($model, 'district', CHtml::listData(JurisdictionDistrict::model()->findAll(array('condition' => '', 'order' => 'taxes_area')), 'id', 'taxes_area'), array('empty' => 'All', 'class' => 'select2')),
                         'htmlOptions' => array('style' => "text-align:left;", 'title' => 'District'),
                     ),
-                    array(
-                        'name' => 'employer_type',
-                        'type' => 'raw',
-                        'value' => '$data->employerType->title',
-                        'filter' => CHtml::activeDropDownList($model, 'employer_type', CHtml::listData(JurisdictionEmployerType::model()->findAll(array('condition' => '', 'order' => 'title')), 'id', 'title'), array('empty' => 'All', 'class' => 'select2')),
-                        'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Employer Type'),
-                    ),
-                    'letter_specific_name',
-                    array(
-                        'name' => 'zone',
-                        'type' => 'raw',
-                        'value' => 'JurisdictionZone::get_title($data->zone)',
-                        'filter' => CHtml::activeDropDownList($model, 'zone', CHtml::listData(JurisdictionZone::model()->findAll(array('condition' => '', 'order' => 'tax_taxes_zone')), 'id', 'tax_taxes_zone'), array('empty' => 'All', 'class' => 'select2')),
-                        'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Zone'),
-                    ),
-                    array(
-                        'name' => 'range',
-                        'type' => 'raw',
-                        'value' => 'JurisdictionRange::get_title($data->range)',
-                        'filter' => CHtml::activeDropDownList($model, 'range', CHtml::listData(JurisdictionRange::model()->findAll(array('condition' => '', 'order' => 'title')), 'id', 'title'), array('empty' => 'All', 'class' => 'select2')),
-                        'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Ranges'),
-                    ),
-                    array(
-                        'name' => 'circle',
-                        'type' => 'raw',
-                        'value' => '$data->circle0->tax_taxes_circle',
-                        'filter' => CHtml::activeDropDownList($model, 'circle', CHtml::listData(JurisdictionCircle::model()->findAll(array('condition' => '', 'order' => 'tax_taxes_circle')), 'id', 'tax_taxes_circle'), array('empty' => 'All', 'class' => 'select2')),
-                        'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Circle'),
-                    ),
+                    'title',
                     array(
                         'class' => 'bootstrap.widgets.TbButtonColumn',
                     ),

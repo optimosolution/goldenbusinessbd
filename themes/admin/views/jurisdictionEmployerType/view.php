@@ -1,18 +1,17 @@
 <?php
-/* @var $this JurisdictionServiceController */
-/* @var $model JurisdictionService */
+/* @var $this JurisdictionEmployerTypeController */
+/* @var $model JurisdictionEmployerType */
 ?>
 
 <?php
-$this->pageTitle = 'Circle details - ' . Yii::app()->name;
 $this->breadcrumbs = array(
-    'Services' => array('admin'),
-    $model->id,
+    'Employer Types' => array('admin'),
+    $model->title,
 );
 ?>
 <div class="widget-box">
     <div class="widget-header">
-        <h5>Details Circle (<?php echo $model->tax_taxes_circle; ?>)</h5>
+        <h5>Details Employer Type </h5>
         <div class="widget-toolbar">
             <a data-action="settings" href="#"><i class="icon-cog"></i></a>
             <a data-action="reload" href="#"><i class="icon-refresh"></i></a>
@@ -46,23 +45,7 @@ $this->breadcrumbs = array(
                         'type' => 'raw',
                         'value' => $model->district0->taxes_area,
                     ),
-                    array(
-                        'name' => 'employer_type',
-                        'type' => 'raw',
-                        'value' => $model->employerType->title,
-                    ),
-                    'letter_specific_name',
-                    array(
-                        'name' => 'zone',
-                        'type' => 'raw',
-                        'value' => $model->zone0->tax_taxes_zone,
-                    ),
-                    'range',
-                    array(
-                        'name' => 'circle',
-                        'type' => 'raw',
-                        'value' => $model->circle0->tax_taxes_circle,
-                    ),
+                    'title',
                 ),
             ));
             ?>
