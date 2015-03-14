@@ -1,10 +1,10 @@
 <?php
-/* @var $this JurisdictionCompanyController */
-/* @var $model JurisdictionCompany */
+/* @var $this JurisdictionOtherController */
+/* @var $model JurisdictionOther */
 
-$this->pageTitle = 'Professions - ' . Yii::app()->name;
+$this->pageTitle = 'Jurisdiction Others - ' . Yii::app()->name;
 $this->breadcrumbs = array(
-    'Companies' => array('admin'),
+    'Jurisdiction Others' => array('admin'),
     'Manage',
 );
 
@@ -14,17 +14,16 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$('#jurisdiction-company-grid').yiiGridView('update', {
+	$('#jurisdiction-other-grid').yiiGridView('update', {
 		data: $(this).serialize()
 	});
 	return false;
 });
 ");
 ?>
-
 <div class="widget-box">
     <div class="widget-header">
-        <h5>Manage Professions</h5>
+        <h5>Manage Jurisdiction Others</h5>
         <div class="widget-toolbar">
             <a data-action="settings" href="#"><i class="icon-cog"></i></a>
             <a data-action="reload" href="#"><i class="icon-refresh"></i></a>
@@ -50,7 +49,7 @@ $('.search-form form').submit(function(){
 
             <?php
             $this->widget('bootstrap.widgets.TbGridView', array(
-                'id' => 'jurisdiction-company-grid',
+                'id' => 'jurisdiction-other-grid',
                 'dataProvider' => $model->search(),
                 'filter' => $model,
                 'columns' => array(
@@ -69,11 +68,11 @@ $('.search-form form').submit(function(){
                         'htmlOptions' => array('style' => "text-align:left;", 'title' => 'District'),
                     ),
                     array(
-                        'name' => 'company_type',
+                        'name' => 'profession_type',
                         'type' => 'raw',
-                        'value' => '$data->companyType->title',
-                        'filter' => CHtml::activeDropDownList($model, 'company_type', CHtml::listData(JurisdictionCompanyType::model()->findAll(array('condition' => '', 'order' => 'title')), 'id', 'title'), array('empty' => 'All', 'class' => 'select2')),
-                        'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Company Type'),
+                        'value' => '$data->professionType->title',
+                        'filter' => CHtml::activeDropDownList($model, 'profession_type', CHtml::listData(JurisdictionLocation::model()->findAll(array('condition' => '', 'order' => 'title')), 'id', 'title'), array('empty' => 'All', 'class' => 'select2')),
+                        'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Location'),
                     ),
                     'letter_specific_name',
                     array(

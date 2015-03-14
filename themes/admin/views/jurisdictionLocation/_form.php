@@ -15,7 +15,9 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 ?>
 <p class="help-block">Fields with <span class="required">*</span> are required.</p>
 <?php echo $form->errorSummary($model); ?>
-<?php echo $form->textFieldControlGroup($model, 'locations', array('span' => 5, 'maxlength' => 255)); ?>
+<?php echo $form->dropDownListControlGroup($model, 'income_source', CHtml::listData(JurisdictionIncomeSource::model()->findAll(array('condition' => '', "order" => "title")), 'id', 'title'), array('options' => array('5' => array('selected' => true)), 'class' => 'span5')); ?>
+<?php echo $form->dropDownListControlGroup($model, 'district', CHtml::listData(JurisdictionDistrict::model()->findAll(array('condition' => '', "order" => "taxes_area")), 'id', 'taxes_area'), array('empty' => '--please select--', 'class' => 'span5')); ?>
+<?php echo $form->textFieldControlGroup($model, 'title', array('span' => 5, 'maxlength' => 255)); ?>
 <div class="form-actions">
     <?php
     echo TbHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array(

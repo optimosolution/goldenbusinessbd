@@ -1,6 +1,6 @@
 <?php
-/* @var $this JurisdictionCompanyController */
-/* @var $data JurisdictionCompany */
+/* @var $this JurisdictionOtherController */
+/* @var $data JurisdictionOther */
 ?>
 
 <div class="view">
@@ -17,8 +17,8 @@
 	<?php echo CHtml::encode($data->district); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('company_type')); ?>:</b>
-	<?php echo CHtml::encode($data->company_type); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('profession_type')); ?>:</b>
+	<?php echo CHtml::encode($data->profession_type); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('letter_specific_name')); ?>:</b>

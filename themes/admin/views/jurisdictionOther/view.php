@@ -1,17 +1,18 @@
 <?php
-/* @var $this JurisdictionCompanyTypeController */
-/* @var $model JurisdictionCompanyType */
+/* @var $this JurisdictionOtherController */
+/* @var $model JurisdictionOther */
 ?>
 
 <?php
+$this->pageTitle = 'Others details - ' . Yii::app()->name;
 $this->breadcrumbs = array(
-    'Company Types' => array('admin'),
-    $model->title,
+    'Jurisdiction Others' => array('admin'),
+    $model->id,
 );
 ?>
 <div class="widget-box">
     <div class="widget-header">
-        <h5>Details Company Type </h5>
+        <h5>Details Others</h5>
         <div class="widget-toolbar">
             <a data-action="settings" href="#"><i class="icon-cog"></i></a>
             <a data-action="reload" href="#"><i class="icon-refresh"></i></a>
@@ -45,7 +46,27 @@ $this->breadcrumbs = array(
                         'type' => 'raw',
                         'value' => $model->district0->taxes_area,
                     ),
-                    'title',
+                    array(
+                        'name' => 'profession_type',
+                        'type' => 'raw',
+                        'value' => $model->professionType->title,
+                    ),
+                    'letter_specific_name',
+                    array(
+                        'name' => 'zone',
+                        'type' => 'raw',
+                        'value' => $model->zone0->tax_taxes_zone,
+                    ),
+                    array(
+                        'name' => 'range',
+                        'type' => 'raw',
+                        'value' => JurisdictionRange::get_title($model->range),
+                    ),
+                    array(
+                        'name' => 'circle',
+                        'type' => 'raw',
+                        'value' => $model->circle0->tax_taxes_circle,
+                    ),
                 ),
             ));
             ?>

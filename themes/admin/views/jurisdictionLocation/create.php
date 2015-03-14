@@ -4,7 +4,6 @@
 ?>
 
 <?php
-$this->pageTitle = 'New Location - ' . Yii::app()->name;
 $this->breadcrumbs = array(
     'Locations' => array('admin'),
     'Create',

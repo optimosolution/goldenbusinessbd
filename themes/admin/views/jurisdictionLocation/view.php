@@ -4,15 +4,14 @@
 ?>
 
 <?php
-$this->pageTitle = 'Location details - ' . Yii::app()->name;
 $this->breadcrumbs = array(
     'Locations' => array('admin'),
-    $model->locations,
+    $model->title,
 );
 ?>
 <div class="widget-box">
     <div class="widget-header">
-        <h5>Details Location (<?php echo $model->locations; ?>)</h5>
+        <h5>Details Location </h5>
         <div class="widget-toolbar">
             <a data-action="settings" href="#"><i class="icon-cog"></i></a>
             <a data-action="reload" href="#"><i class="icon-refresh"></i></a>
@@ -36,7 +35,17 @@ $this->breadcrumbs = array(
                 'data' => $model,
                 'attributes' => array(
                     'id',
-                    'locations',
+                    array(
+                        'name' => 'income_source',
+                        'type' => 'raw',
+                        'value' => $model->incomeSource->title,
+                    ),
+                    array(
+                        'name' => 'district',
+                        'type' => 'raw',
+                        'value' => $model->district0->taxes_area,
+                    ),
+                    'title',
                 ),
             ));
             ?>

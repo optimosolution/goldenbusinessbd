@@ -1,19 +1,27 @@
 <?php
-/* @var $this JurisdictionEmployerController */
-/* @var $model JurisdictionEmployer */
+/* @var $this JurisdictionOtherController */
+/* @var $model JurisdictionOther */
 ?>
 
 <?php
-$this->pageTitle = 'Edit Employers - ' . Yii::app()->name;
+$this->pageTitle = 'Edit Others - ' . Yii::app()->name;
 $this->breadcrumbs = array(
-    'Employers' => array('index'),
-    $model->tax_employer => array('view', 'id' => $model->id),
+    'Jurisdiction Others' => array('admin'),
+    $model->id => array('view', 'id' => $model->id),
     'Update',
 );
+
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile(Yii::app()->theme->baseUrl . '/assets/js/jquery.chained.js', CClientScript::POS_END);
+Yii::app()->clientScript->registerScript('chain-select', " 
+$('#JurisdictionOther_profession_type').chained('#JurisdictionOther_district');
+$('#JurisdictionOther_range').chained('#JurisdictionOther_zone');
+$('#JurisdictionOther_circle').chained('#JurisdictionOther_zone');
+");
 ?>
 <div class="widget-box">
     <div class="widget-header">
-        <h5>Edit Employers (<?php echo $model->tax_employer; ?>)</h5>
+        <h5>Edit Others</h5>
         <div class="widget-toolbar">
             <a data-action="settings" href="#"><i class="icon-cog"></i></a>
             <a data-action="reload" href="#"><i class="icon-refresh"></i></a>

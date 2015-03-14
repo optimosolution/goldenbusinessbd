@@ -4,7 +4,6 @@
 ?>
 
 <?php
-$this->pageTitle = 'New Company Type - ' . Yii::app()->name;
 $this->breadcrumbs = array(
     'Company Types' => array('admin'),
     'Create',

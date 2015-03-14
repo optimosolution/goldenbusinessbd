@@ -4,16 +4,15 @@
 ?>
 
 <?php
-$this->pageTitle = 'Edit Company Type - ' . Yii::app()->name;
 $this->breadcrumbs = array(
     'Company Types' => array('admin'),
-    $model->company_type => array('view', 'id' => $model->id),
+    $model->title => array('view', 'id' => $model->id),
     'Update',
 );
 ?>
 <div class="widget-box">
     <div class="widget-header">
-        <h5>Edit Company Type (<?php echo $model->company_type; ?>)</h5>
+        <h5>Edit Company Type</h5>
         <div class="widget-toolbar">
             <a data-action="settings" href="#"><i class="icon-cog"></i></a>
             <a data-action="reload" href="#"><i class="icon-refresh"></i></a>

@@ -5,19 +5,20 @@
  *
  * The followings are the available columns in table '{{jurisdiction_company}}':
  * @property integer $id
- * @property integer $district_id
- * @property integer $company_id
- * @property integer $character_id
- * @property string $assessee
+ * @property integer $income_source
+ * @property integer $district
+ * @property integer $company_type
+ * @property string $letter_specific_name
  * @property integer $zone
+ * @property integer $range
  * @property integer $circle
  *
  * The followings are the available model relations:
- * @property JurisdictionDistrict $district
- * @property JurisdictionCompanyType $company
- * @property JurisdictionCharacter $character
- * @property JurisdictionZone $zone0
  * @property JurisdictionCircle $circle0
+ * @property JurisdictionIncomeSource $incomeSource
+ * @property JurisdictionDistrict $district0
+ * @property JurisdictionCompanyType $companyType
+ * @property JurisdictionZone $zone0
  */
 class JurisdictionCompany extends CActiveRecord {
 
@@ -35,11 +36,11 @@ class JurisdictionCompany extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('district_id, company_id, character_id, zone, circle', 'numerical', 'integerOnly' => true),
-            array('assessee', 'length', 'max' => 255),
+            array('income_source, district, company_type, zone, range, circle', 'numerical', 'integerOnly' => true),
+            array('letter_specific_name', 'length', 'max' => 255),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, district_id, company_id, character_id, assessee, zone, circle', 'safe', 'on' => 'search'),
+            array('id, income_source, district, company_type, letter_specific_name, zone, range, circle', 'safe', 'on' => 'search'),
         );
     }
 
@@ -50,11 +51,11 @@ class JurisdictionCompany extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'district' => array(self::BELONGS_TO, 'JurisdictionDistrict', 'district_id'),
-            'company' => array(self::BELONGS_TO, 'JurisdictionCompanyType', 'company_id'),
-            'character' => array(self::BELONGS_TO, 'JurisdictionCharacter', 'character_id'),
-            'zone0' => array(self::BELONGS_TO, 'JurisdictionZone', 'zone'),
             'circle0' => array(self::BELONGS_TO, 'JurisdictionCircle', 'circle'),
+            'incomeSource' => array(self::BELONGS_TO, 'JurisdictionIncomeSource', 'income_source'),
+            'district0' => array(self::BELONGS_TO, 'JurisdictionDistrict', 'district'),
+            'companyType' => array(self::BELONGS_TO, 'JurisdictionCompanyType', 'company_type'),
+            'zone0' => array(self::BELONGS_TO, 'JurisdictionZone', 'zone'),
         );
     }
 
@@ -64,11 +65,12 @@ class JurisdictionCompany extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
-            'district_id' => 'District',
-            'company_id' => 'Company Type',
-            'character_id' => 'Character',
-            'assessee' => 'Assessee',
+            'income_source' => 'Income Source',
+            'district' => 'District',
+            'company_type' => 'Company Type',
+            'letter_specific_name' => 'Letter or Specific Name',
             'zone' => 'Zone',
+            'range' => 'Range',
             'circle' => 'Circle',
         );
     }
@@ -91,11 +93,12 @@ class JurisdictionCompany extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
-        $criteria->compare('district_id', $this->district_id);
-        $criteria->compare('company_id', $this->company_id);
-        $criteria->compare('character_id', $this->character_id);
-        $criteria->compare('assessee', $this->assessee, true);
+        $criteria->compare('income_source', $this->income_source);
+        $criteria->compare('district', $this->district);
+        $criteria->compare('company_type', $this->company_type);
+        $criteria->compare('letter_specific_name', $this->letter_specific_name, true);
         $criteria->compare('zone', $this->zone);
+        $criteria->compare('range', $this->range);
         $criteria->compare('circle', $this->circle);
 
         return new CActiveDataProvider($this, array(
