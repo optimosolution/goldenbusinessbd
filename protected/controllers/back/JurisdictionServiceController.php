@@ -65,6 +65,7 @@ class JurisdictionServiceController extends BackEndController {
 
         if (isset($_POST['JurisdictionService'])) {
             $model->attributes = $_POST['JurisdictionService'];
+            $model->range = JurisdictionCircle::get_range($model->circle);
             if ($model->save()) {
                 Yii::app()->user->setFlash('success', 'Data was saved successfully.');
                 $this->redirect(array('admin'));

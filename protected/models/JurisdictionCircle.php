@@ -129,4 +129,13 @@ class JurisdictionCircle extends CActiveRecord {
         }
     }
 
+    public static function get_range($id) {
+        $value = JurisdictionCircle::model()->findByAttributes(array('id' => $id));
+        if (empty($value->ranges)) {
+            return null;
+        } else {
+            return $value->ranges;
+        }
+    }
+
 }
