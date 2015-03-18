@@ -1,6 +1,6 @@
 <?php
 
-class BannerController extends BackEndController {
+class SroController extends BackEndController {
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -8,22 +8,13 @@ class BannerController extends BackEndController {
      */
     public $layout = '//layouts/column2';
 
-    protected function beforeAction($action) {
-        $access = $this->checkAccess(Yii::app()->controller->id, Yii::app()->controller->action->id);
-        if ($access == 1) {
-            return true;
-        } else {
-            Yii::app()->user->setFlash('error', "You are not authorized to perform this action!");
-            $this->redirect(array('/site/noaccess'));
-        }
-    }
-
     /**
      * @return array action filters
      */
     public function filters() {
         return array(
             'accessControl', // perform access control for CRUD operations
+            'postOnly + delete', // we only allow deletion via POST request
         );
     }
 
@@ -39,11 +30,11 @@ class BannerController extends BackEndController {
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'admin', 'delete'),
+                'actions' => array('admin', 'delete', 'create', 'update'),
                 'users' => array('@'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions' => array('create', 'update', 'admin', 'delete'),
+                'actions' => array('admin', 'delete', 'create', 'update'),
                 'users' => array('admin'),
             ),
             array('deny', // deny all users
@@ -67,38 +58,33 @@ class BannerController extends BackEndController {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new Banner;
-
-        $path = Yii::app()->basePath . '/../uploads/banners';
+        $model = new Sro;
+        $path = Yii::app()->basePath . '/../uploads/sro';
         if (!is_dir($path)) {
             mkdir($path, 0777, true);
         }
 
-        if (isset($_POST['Banner'])) {
-            $model->attributes = $_POST['Banner'];
-            if ($model->validate()) {
-                $model->created_on = new CDbExpression('NOW()');
-                $model->created_by = Yii::app()->user->id;
-                if (empty($model->alias)) {
-                    $model->alias = str_replace(' ', '-', strtolower($model->name));
-                } else {
-                    $model->alias = str_replace(' ', '-', strtolower($model->alias));
-                }
-                //Picture upload script
-                if (@!empty($_FILES['Banner']['name']['banner'])) {
-                    $model->banner = $_POST['Banner']['banner'];
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
 
-                    if ($model->validate(array('banner'))) {
-                        $model->banner = CUploadedFile::getInstance($model, 'banner');
+        if (isset($_POST['Sro'])) {
+            $model->attributes = $_POST['Sro'];
+            if ($model->validate()) {
+                //Picture upload script
+                if (@!empty($_FILES['Sro']['name']['attach_file'])) {
+                    $model->attach_file = $_POST['Sro']['attach_file'];
+
+                    if ($model->validate(array('attach_file'))) {
+                        $model->attach_file = CUploadedFile::getInstance($model, 'attach_file');
                     } else {
-                        $model->banner = '';
+                        $model->attach_file = '';
                     }
-                    $model->banner->saveAs($path . '/' . time() . '_' . str_replace(' ', '_', strtolower($model->banner)));
-                    $model->banner = time() . '_' . str_replace(' ', '_', strtolower($model->banner));
+                    $model->attach_file->saveAs($path . '/' . time() . '_' . str_replace(' ', '_', strtolower($model->attach_file)));
+                    $model->attach_file = time() . '_' . str_replace(' ', '_', strtolower($model->attach_file));
                 }
                 if ($model->save()) {
-                    Yii::app()->user->setFlash('success', 'Saved successfully');
-                    $this->redirect(array('view', 'id' => $model->id));
+                    Yii::app()->user->setFlash('success', 'Data was saved successfully.');
+                    $this->redirect(array('admin'));
                 }
             }
         }
@@ -115,43 +101,39 @@ class BannerController extends BackEndController {
      */
     public function actionUpdate($id) {
         $model = $this->loadModel($id);
-
-        $previuosFileName = $model->banner;
-        $path = Yii::app()->basePath . '/../uploads/banners';
+        $previuosFileName = $model->attach_file;
+        $path = Yii::app()->basePath . '/../uploads/sro';
         if (!is_dir($path)) {
             mkdir($path, 0777, true);
         }
 
-        if (isset($_POST['Banner'])) {
-            $model->attributes = $_POST['Banner'];
-            if ($model->validate()) {
-                if (empty($model->alias)) {
-                    $model->alias = str_replace(' ', '-', strtolower($model->name));
-                } else {
-                    $model->alias = str_replace(' ', '-', strtolower($model->alias));
-                }
-                //Picture upload script
-                if (@!empty($_FILES['Banner']['name']['banner'])) {
-                    $model->banner = $_POST['Banner']['banner'];
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
 
-                    if ($model->validate(array('banner'))) {
+        if (isset($_POST['Sro'])) {
+            $model->attributes = $_POST['Sro'];
+            if ($model->validate()) {
+                //Picture upload script
+                if (@!empty($_FILES['Sro']['name']['attach_file'])) {
+                    $model->attach_file = $_POST['Sro']['attach_file'];
+
+                    if ($model->validate(array('attach_file'))) {
                         $myFile = $path . '/' . $previuosFileName;
                         if ((is_file($myFile)) && (file_exists($myFile))) {
                             unlink($myFile);
                         }
-                        $model->banner = CUploadedFile::getInstance($model, 'banner');
+                        $model->attach_file = CUploadedFile::getInstance($model, 'attach_file');
                     } else {
-                        $model->banner = '';
+                        $model->attach_file = '';
                     }
-                    $model->banner->saveAs($path . '/' . time() . '_' . str_replace(' ', '_', strtolower($model->banner)));
-                    $model->banner = time() . '_' . str_replace(' ', '_', strtolower($model->banner));
+                    $model->attach_file->saveAs($path . '/' . time() . '_' . str_replace(' ', '_', strtolower($model->attach_file)));
+                    $model->attach_file = time() . '_' . str_replace(' ', '_', strtolower($model->attach_file));
                 } else {
-                    $model->banner = $previuosFileName;
+                    $model->attach_file = $previuosFileName;
                 }
-
                 if ($model->save()) {
-                    Yii::app()->user->setFlash('success', 'Saved successfully');
-                    $this->redirect(array('view', 'id' => $model->id));
+                    Yii::app()->user->setFlash('success', 'Data was saved successfully.');
+                    $this->redirect(array('admin'));
                 }
             }
         }
@@ -172,11 +154,12 @@ class BannerController extends BackEndController {
             $this->loadModel($id)->delete();
 
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-            if (!isset($_GET['ajax']))
+            if (!isset($_GET['ajax'])) {
                 $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
-        }
-        else
+            }
+        } else {
             throw new CHttpException(400, 'Invalid request. Please do not repeat this request again.');
+        }
     }
 
     /**
@@ -184,7 +167,7 @@ class BannerController extends BackEndController {
      */
     public function actionIndex() {
         $this->redirect(array('admin'));
-        $dataProvider = new CActiveDataProvider('Banner');
+        $dataProvider = new CActiveDataProvider('Sro');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -194,10 +177,11 @@ class BannerController extends BackEndController {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new Banner('search');
+        $model = new Sro('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['Banner']))
-            $model->attributes = $_GET['Banner'];
+        if (isset($_GET['Sro'])) {
+            $model->attributes = $_GET['Sro'];
+        }
 
         $this->render('admin', array(
             'model' => $model,
@@ -207,21 +191,24 @@ class BannerController extends BackEndController {
     /**
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
-     * @param integer the ID of the model to be loaded
+     * @param integer $id the ID of the model to be loaded
+     * @return Sro the loaded model
+     * @throws CHttpException
      */
     public function loadModel($id) {
-        $model = Banner::model()->findByPk($id);
-        if ($model === null)
+        $model = Sro::model()->findByPk($id);
+        if ($model === null) {
             throw new CHttpException(404, 'The requested page does not exist.');
+        }
         return $model;
     }
 
     /**
      * Performs the AJAX validation.
-     * @param CModel the model to be validated
+     * @param Sro $model the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'banner-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'sro-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }
