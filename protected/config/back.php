@@ -31,6 +31,9 @@ return CMap::mergeArray(
                 // this is used in contact page
                 'adminEmail' => 'info@goldenbusinessbd.com',
                 'pageSize' => 10,
+                'pageSize20' => 20,
+                'pageSize50' => 50,
+                'pageSize100' => 100,
             ),
                 )
 );

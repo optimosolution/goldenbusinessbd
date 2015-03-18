@@ -104,6 +104,9 @@ class JurisdictionService extends CActiveRecord {
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
+            'pagination' => array(
+                'pageSize' => Yii::app()->params['pageSize50'],
+            ),
         ));
     }
 
@@ -116,7 +119,7 @@ class JurisdictionService extends CActiveRecord {
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
-    
+
     public static function get_list_frontend($controller, $field, $id) {
         $rValue = Yii::app()->db->createCommand()
                 ->select('id,employer_type,letter_specific_name')

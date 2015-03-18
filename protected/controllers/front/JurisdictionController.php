@@ -113,10 +113,6 @@ class JurisdictionController extends Controller {
      * Lists all models.
      */
     public function actionIndex() {
-//        $dataProvider = new CActiveDataProvider('JurisdictionService');
-//        $this->render('index', array(
-//            'dataProvider' => $dataProvider,
-//        ));
         //Service
         $model = new JurisdictionService('search');
         $model->unsetAttributes();  // clear any default values
@@ -127,10 +123,16 @@ class JurisdictionController extends Controller {
         $model_profession->unsetAttributes();  // clear any default values
         if (isset($_GET['JurisdictionProfession']))
             $model_profession->attributes = $_GET['JurisdictionProfession'];
+        //Company
+        $model_company = new JurisdictionCompany('search');
+        $model_company->unsetAttributes();  // clear any default values
+        if (isset($_GET['JurisdictionCompany']))
+            $model_company->attributes = $_GET['JurisdictionCompany'];
 
         $this->render('index', array(
             'model' => $model,
             'model_profession' => $model_profession,
+            'model_company' => $model_company,
         ));
     }
 

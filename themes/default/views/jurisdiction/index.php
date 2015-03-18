@@ -115,7 +115,42 @@ $('#JurisdictionProfession_letter_specific_name').chained('#JurisdictionProfessi
                 <div class="clearfix"></div>
             </div>
             <div class="tab-pane" id="tab4">
-
+                <?php
+                $this->renderPartial('_search_company', array(
+                    'model_company' => $model_company,
+                ));
+                $this->widget('zii.widgets.grid.CGridView', array(
+                    'id' => 'jurisdiction-company-grid',
+                    'dataProvider' => $model_company->search(),
+                    //'filter' => $model_company,
+                    'columns' => array(
+                        array(
+                            'name' => 'zone',
+                            'type' => 'raw',
+                            'value' => 'JurisdictionZone::get_title($data->zone)',
+                            'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Zone'),
+                        ),
+                        array(
+                            'name' => 'range',
+                            'type' => 'raw',
+                            'value' => 'JurisdictionRange::get_title($data->range)',
+                            'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Ranges'),
+                        ),
+                        array(
+                            'name' => 'circle',
+                            'type' => 'raw',
+                            'value' => '$data->circle0->tax_taxes_circle',
+                            'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Circle'),
+                        ),
+                        array(
+                            'header' => 'Address',
+                            'type' => 'raw',
+                            'value' => 'JurisdictionCircle::get_address($data->circle)',
+                            'htmlOptions' => array('style' => "text-align:left;width:300px;", 'title' => 'Address'),
+                        ),
+                    ),
+                ));
+                ?>
                 <div class="clearfix"></div>
             </div>
             <div class="tab-pane" id="tab5">
