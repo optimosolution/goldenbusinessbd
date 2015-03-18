@@ -27,8 +27,8 @@ $('#JurisdictionProfession_letter_specific_name').chained('#JurisdictionProfessi
             <li class="active"><a href="#tab1" data-toggle="tab">Service</a></li>
             <li><a href="#tab2" data-toggle="tab">Profession</a></li>
             <li><a href="#tab3" data-toggle="tab">Business (Individual/Firm)</a></li>
-            <li><a href="#ta4" data-toggle="tab">Business (Ltd. Company)</a></li>
-            <li><a href="#ta5" data-toggle="tab">Others</a></li>
+            <li><a href="#tab4" data-toggle="tab">Business (Ltd. Company)</a></li>
+            <li><a href="#tab5" data-toggle="tab">Others</a></li>
         </ul>
         <!-- Tab panes -->
         <div class="tab-content">
