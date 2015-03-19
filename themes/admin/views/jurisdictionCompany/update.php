@@ -7,7 +7,7 @@
 $this->pageTitle = 'Edit Companies - ' . Yii::app()->name;
 $this->breadcrumbs = array(
     'Companies' => array('admin'),
-    $model->id => array('view', 'id' => $model->id),
+    //$model->id => array('view', 'id' => $model->id),
     'Update',
 );
 $cs = Yii::app()->getClientScript();
