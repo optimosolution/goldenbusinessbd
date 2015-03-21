@@ -7,7 +7,7 @@
 $this->pageTitle = 'Edit SRO - ' . Yii::app()->name;
 $this->breadcrumbs = array(
     'Sros' => array('admin'),
-    $model->sl_no => array('view', 'id' => $model->id),
+    //$model->sl_no => array('view', 'id' => $model->id),
     'Update',
 );
 Yii::app()->clientScript->registerScript('banner', "
