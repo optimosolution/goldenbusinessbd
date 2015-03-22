@@ -1,6 +1,6 @@
 <?php
 
-class JurisdictionOtherController extends BackEndController {
+class JurisdictionBusinessController extends BackEndController {
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -58,13 +58,13 @@ class JurisdictionOtherController extends BackEndController {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new JurisdictionOther;
+        $model = new JurisdictionBusiness;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['JurisdictionOther'])) {
-            $model->attributes = $_POST['JurisdictionOther'];
+        if (isset($_POST['JurisdictionBusiness'])) {
+            $model->attributes = $_POST['JurisdictionBusiness'];
             $model->range = JurisdictionCircle::get_range($model->circle);
             if ($model->save()) {
                 Yii::app()->user->setFlash('success', 'Data was saved successfully.');
@@ -88,8 +88,8 @@ class JurisdictionOtherController extends BackEndController {
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['JurisdictionOther'])) {
-            $model->attributes = $_POST['JurisdictionOther'];
+        if (isset($_POST['JurisdictionBusiness'])) {
+            $model->attributes = $_POST['JurisdictionBusiness'];
             if ($model->save()) {
                 Yii::app()->user->setFlash('success', 'Data was saved successfully.');
                 $this->redirect(array('admin'));
@@ -124,7 +124,7 @@ class JurisdictionOtherController extends BackEndController {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('JurisdictionOther');
+        $dataProvider = new CActiveDataProvider('JurisdictionBusiness');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -134,10 +134,10 @@ class JurisdictionOtherController extends BackEndController {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new JurisdictionOther('search');
+        $model = new JurisdictionBusiness('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['JurisdictionOther'])) {
-            $model->attributes = $_GET['JurisdictionOther'];
+        if (isset($_GET['JurisdictionBusiness'])) {
+            $model->attributes = $_GET['JurisdictionBusiness'];
         }
 
         $this->render('admin', array(
@@ -149,11 +149,11 @@ class JurisdictionOtherController extends BackEndController {
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return JurisdictionOther the loaded model
+     * @return JurisdictionBusiness the loaded model
      * @throws CHttpException
      */
     public function loadModel($id) {
-        $model = JurisdictionOther::model()->findByPk($id);
+        $model = JurisdictionBusiness::model()->findByPk($id);
         if ($model === null) {
             throw new CHttpException(404, 'The requested page does not exist.');
         }
@@ -162,10 +162,10 @@ class JurisdictionOtherController extends BackEndController {
 
     /**
      * Performs the AJAX validation.
-     * @param JurisdictionOther $model the model to be validated
+     * @param JurisdictionBusiness $model the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'jurisdiction-other-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'jurisdiction-business-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }

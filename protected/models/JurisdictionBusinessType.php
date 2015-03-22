@@ -1,26 +1,27 @@
 <?php
 
 /**
- * This is the model class for table "{{jurisdiction_company_type}}".
+ * This is the model class for table "{{jurisdiction_business_type}}".
  *
- * The followings are the available columns in table '{{jurisdiction_company_type}}':
+ * The followings are the available columns in table '{{jurisdiction_business_type}}':
  * @property integer $id
+ * @property integer $btype
  * @property integer $income_source
  * @property integer $district
  * @property string $title
  *
  * The followings are the available model relations:
- * @property JurisdictionCompany[] $jurisdictionCompanies
+ * @property JurisdictionBusiness[] $jurisdictionBusinesses
  * @property JurisdictionIncomeSource $incomeSource
  * @property JurisdictionDistrict $district0
  */
-class JurisdictionCompanyType extends CActiveRecord {
+class JurisdictionBusinessType extends CActiveRecord {
 
     /**
      * @return string the associated database table name
      */
     public function tableName() {
-        return '{{jurisdiction_company_type}}';
+        return '{{jurisdiction_business_type}}';
     }
 
     /**
@@ -30,12 +31,12 @@ class JurisdictionCompanyType extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('income_source, district, title', 'required'),
-            array('income_source, district', 'numerical', 'integerOnly' => true),
+            array('title', 'required'),
+            array('btype, income_source, district', 'numerical', 'integerOnly' => true),
             array('title', 'length', 'max' => 255),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, income_source, district, title', 'safe', 'on' => 'search'),
+            array('id, btype, income_source, district, title', 'safe', 'on' => 'search'),
         );
     }
 
@@ -46,7 +47,7 @@ class JurisdictionCompanyType extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'jurisdictionCompanies' => array(self::HAS_MANY, 'JurisdictionCompany', 'company_type'),
+            'jurisdictionBusinesses' => array(self::HAS_MANY, 'JurisdictionBusiness', 'business_type'),
             'incomeSource' => array(self::BELONGS_TO, 'JurisdictionIncomeSource', 'income_source'),
             'district0' => array(self::BELONGS_TO, 'JurisdictionDistrict', 'district'),
         );
@@ -58,9 +59,10 @@ class JurisdictionCompanyType extends CActiveRecord {
     public function attributeLabels() {
         return array(
             'id' => 'ID',
+            'btype' => 'Type',
             'income_source' => 'Income Source',
             'district' => 'District',
-            'title' => 'Company',
+            'title' => 'Location/Business Type',
         );
     }
 
@@ -82,6 +84,7 @@ class JurisdictionCompanyType extends CActiveRecord {
         $criteria = new CDbCriteria;
 
         $criteria->compare('id', $this->id);
+        $criteria->compare('btype', $this->btype);
         $criteria->compare('income_source', $this->income_source);
         $criteria->compare('district', $this->district);
         $criteria->compare('title', $this->title, true);
@@ -95,16 +98,16 @@ class JurisdictionCompanyType extends CActiveRecord {
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return JurisdictionCompanyType the static model class
+     * @return JurisdictionBusinessType the static model class
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
-
+    
     public static function get_type_list($controller, $field, $id) {
         $rValue = Yii::app()->db->createCommand()
                 ->select('id,district,title')
-                ->from('{{jurisdiction_company_type}}')
+                ->from('{{jurisdiction_business_type}}')
                 ->order('title')
                 ->queryAll();
         echo '<select id="' . $controller . '_' . $field . '" name="' . $controller . '[' . $field . ']" class="span12">';

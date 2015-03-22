@@ -1,6 +1,6 @@
 <?php
 
-class JurisdictionOtherController extends BackEndController {
+class JurisdictionBusinessTypeController extends BackEndController {
 
     /**
      * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -58,14 +58,13 @@ class JurisdictionOtherController extends BackEndController {
      * If creation is successful, the browser will be redirected to the 'view' page.
      */
     public function actionCreate() {
-        $model = new JurisdictionOther;
+        $model = new JurisdictionBusinessType;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['JurisdictionOther'])) {
-            $model->attributes = $_POST['JurisdictionOther'];
-            $model->range = JurisdictionCircle::get_range($model->circle);
+        if (isset($_POST['JurisdictionBusinessType'])) {
+            $model->attributes = $_POST['JurisdictionBusinessType'];
             if ($model->save()) {
                 Yii::app()->user->setFlash('success', 'Data was saved successfully.');
                 $this->redirect(array('admin'));
@@ -88,8 +87,8 @@ class JurisdictionOtherController extends BackEndController {
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
 
-        if (isset($_POST['JurisdictionOther'])) {
-            $model->attributes = $_POST['JurisdictionOther'];
+        if (isset($_POST['JurisdictionBusinessType'])) {
+            $model->attributes = $_POST['JurisdictionBusinessType'];
             if ($model->save()) {
                 Yii::app()->user->setFlash('success', 'Data was saved successfully.');
                 $this->redirect(array('admin'));
@@ -124,7 +123,7 @@ class JurisdictionOtherController extends BackEndController {
      * Lists all models.
      */
     public function actionIndex() {
-        $dataProvider = new CActiveDataProvider('JurisdictionOther');
+        $dataProvider = new CActiveDataProvider('JurisdictionBusinessType');
         $this->render('index', array(
             'dataProvider' => $dataProvider,
         ));
@@ -134,10 +133,10 @@ class JurisdictionOtherController extends BackEndController {
      * Manages all models.
      */
     public function actionAdmin() {
-        $model = new JurisdictionOther('search');
+        $model = new JurisdictionBusinessType('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['JurisdictionOther'])) {
-            $model->attributes = $_GET['JurisdictionOther'];
+        if (isset($_GET['JurisdictionBusinessType'])) {
+            $model->attributes = $_GET['JurisdictionBusinessType'];
         }
 
         $this->render('admin', array(
@@ -149,11 +148,11 @@ class JurisdictionOtherController extends BackEndController {
      * Returns the data model based on the primary key given in the GET variable.
      * If the data model is not found, an HTTP exception will be raised.
      * @param integer $id the ID of the model to be loaded
-     * @return JurisdictionOther the loaded model
+     * @return JurisdictionBusinessType the loaded model
      * @throws CHttpException
      */
     public function loadModel($id) {
-        $model = JurisdictionOther::model()->findByPk($id);
+        $model = JurisdictionBusinessType::model()->findByPk($id);
         if ($model === null) {
             throw new CHttpException(404, 'The requested page does not exist.');
         }
@@ -162,10 +161,10 @@ class JurisdictionOtherController extends BackEndController {
 
     /**
      * Performs the AJAX validation.
-     * @param JurisdictionOther $model the model to be validated
+     * @param JurisdictionBusinessType $model the model to be validated
      */
     protected function performAjaxValidation($model) {
-        if (isset($_POST['ajax']) && $_POST['ajax'] === 'jurisdiction-other-form') {
+        if (isset($_POST['ajax']) && $_POST['ajax'] === 'jurisdiction-business-type-form') {
             echo CActiveForm::validate($model);
             Yii::app()->end();
         }

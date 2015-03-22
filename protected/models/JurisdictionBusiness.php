@@ -1,26 +1,32 @@
 <?php
 
 /**
- * This is the model class for table "{{jurisdiction_company_type}}".
+ * This is the model class for table "{{jurisdiction_business}}".
  *
- * The followings are the available columns in table '{{jurisdiction_company_type}}':
+ * The followings are the available columns in table '{{jurisdiction_business}}':
  * @property integer $id
  * @property integer $income_source
  * @property integer $district
- * @property string $title
+ * @property integer $business_type
+ * @property string $letter_specific_name
+ * @property integer $zone
+ * @property integer $range
+ * @property integer $circle
  *
  * The followings are the available model relations:
- * @property JurisdictionCompany[] $jurisdictionCompanies
  * @property JurisdictionIncomeSource $incomeSource
  * @property JurisdictionDistrict $district0
+ * @property JurisdictionBusinessType $businessType
+ * @property JurisdictionZone $zone0
+ * @property JurisdictionCircle $circle0
  */
-class JurisdictionCompanyType extends CActiveRecord {
+class JurisdictionBusiness extends CActiveRecord {
 
     /**
      * @return string the associated database table name
      */
     public function tableName() {
-        return '{{jurisdiction_company_type}}';
+        return '{{jurisdiction_business}}';
     }
 
     /**
@@ -30,12 +36,12 @@ class JurisdictionCompanyType extends CActiveRecord {
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
-            array('income_source, district, title', 'required'),
-            array('income_source, district', 'numerical', 'integerOnly' => true),
-            array('title', 'length', 'max' => 255),
+            array('income_source, district, business_type, zone, circle', 'required'),
+            array('income_source, district, business_type, zone, range, circle', 'numerical', 'integerOnly' => true),
+            array('letter_specific_name', 'length', 'max' => 255),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
-            array('id, income_source, district, title', 'safe', 'on' => 'search'),
+            array('id, income_source, district, business_type, letter_specific_name, zone, range, circle', 'safe', 'on' => 'search'),
         );
     }
 
@@ -46,9 +52,11 @@ class JurisdictionCompanyType extends CActiveRecord {
         // NOTE: you may need to adjust the relation name and the related
         // class name for the relations automatically generated below.
         return array(
-            'jurisdictionCompanies' => array(self::HAS_MANY, 'JurisdictionCompany', 'company_type'),
             'incomeSource' => array(self::BELONGS_TO, 'JurisdictionIncomeSource', 'income_source'),
             'district0' => array(self::BELONGS_TO, 'JurisdictionDistrict', 'district'),
+            'businessType' => array(self::BELONGS_TO, 'JurisdictionBusinessType', 'business_type'),
+            'zone0' => array(self::BELONGS_TO, 'JurisdictionZone', 'zone'),
+            'circle0' => array(self::BELONGS_TO, 'JurisdictionCircle', 'circle'),
         );
     }
 
@@ -60,7 +68,11 @@ class JurisdictionCompanyType extends CActiveRecord {
             'id' => 'ID',
             'income_source' => 'Income Source',
             'district' => 'District',
-            'title' => 'Company',
+            'business_type' => 'Business Type/ Location',
+            'letter_specific_name' => 'Letter or Specific Name',
+            'zone' => 'Zone',
+            'range' => 'Range',
+            'circle' => 'Circle',
         );
     }
 
@@ -84,7 +96,11 @@ class JurisdictionCompanyType extends CActiveRecord {
         $criteria->compare('id', $this->id);
         $criteria->compare('income_source', $this->income_source);
         $criteria->compare('district', $this->district);
-        $criteria->compare('title', $this->title, true);
+        $criteria->compare('business_type', $this->business_type);
+        $criteria->compare('letter_specific_name', $this->letter_specific_name, true);
+        $criteria->compare('zone', $this->zone);
+        $criteria->compare('range', $this->range);
+        $criteria->compare('circle', $this->circle);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,
@@ -95,28 +111,10 @@ class JurisdictionCompanyType extends CActiveRecord {
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
      * @param string $className active record class name.
-     * @return JurisdictionCompanyType the static model class
+     * @return JurisdictionBusiness the static model class
      */
     public static function model($className = __CLASS__) {
         return parent::model($className);
-    }
-
-    public static function get_type_list($controller, $field, $id) {
-        $rValue = Yii::app()->db->createCommand()
-                ->select('id,district,title')
-                ->from('{{jurisdiction_company_type}}')
-                ->order('title')
-                ->queryAll();
-        echo '<select id="' . $controller . '_' . $field . '" name="' . $controller . '[' . $field . ']" class="span12">';
-        echo '<option value="">--select type--</option>';
-        foreach ($rValue as $key => $values) {
-            if ($values["id"] == $id) {
-                echo '<option selected="selected" value="' . $values["id"] . '" class="' . $values["district"] . '">' . $values["title"] . '</option>';
-            } else {
-                echo '<option value="' . $values["id"] . '" class="' . $values["district"] . '">' . $values["title"] . '</option>';
-            }
-        }
-        echo '</select>';
     }
 
 }
