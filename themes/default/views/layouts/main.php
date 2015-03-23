@@ -77,7 +77,10 @@
                                     <li><?php echo CHtml::link('Paripatra 2013-2014', array('content/index', 'id' => 188), array('class' => '')); ?></li>
                                     <li><?php echo CHtml::link('Paripatra - 2010-2011', array('content/index', 'id' => 166), array('class' => '')); ?></li>
                                     <li><?php echo CHtml::link('Paripatra- 2009-2010', array('content/view', 'id' => 474), array('class' => '')); ?></li>
-                                    <li><?php echo CHtml::link('SRO', array('content/index', 'id' => 72), array('class' => '')); ?></li>
+                                    <li>
+                                        <?php //echo CHtml::link('SRO', array('content/index', 'id' => 72), array('class' => '')); ?>
+                                        <?php echo CHtml::link('SRO', array('sro/index', 'id' => 1), array('class' => '')); ?>
+                                    </li>
                                     <li><?php echo CHtml::link('Income Tax Accounts Code', array('content/index', 'id' => 164), array('class' => '')); ?></li>                                                                        
                                     <li><?php echo CHtml::link('FAQs', array('content/index', 'id' => 76), array('class' => '')); ?></li>
                                     <li><?php echo CHtml::link('Forms', array('document/index', 'id' => 73), array('class' => '')); ?></li>
@@ -88,7 +91,10 @@
                                 <ul class="dropdown-menu">
                                     <li><?php echo CHtml::link('Law', array('content/index', 'id' => 34), array('class' => '')); ?></li>
                                     <li><?php echo CHtml::link('Rules', array('content/index', 'id' => 35), array('class' => '')); ?></li>
-                                    <li><?php echo CHtml::link('SRO', array('document/index', 'id' => 78), array('class' => '')); ?></li>
+                                    <li>
+                                        <?php //echo CHtml::link('SRO', array('document/index', 'id' => 78), array('class' => '')); ?>
+                                        <?php echo CHtml::link('SRO', array('sro/index', 'id' => 3), array('class' => '')); ?>
+                                    </li>
                                     <li><?php echo CHtml::link('VAT Act Second Schedule 2010', '#', array('class' => '')); ?></li>
                                     <li><?php echo CHtml::link('VAT Act First Schedule 2010', '#', array('class' => '')); ?></li>
                                     <li><?php echo CHtml::link('VAT Act Third Schedule 2010', '#', array('class' => '')); ?></li>
@@ -231,7 +237,7 @@
             <a href="#header"><i class="fa fa-chevron-up"></i></a>
         </div>
         <!-- Scripts -->
-        <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery-1.10.2.min.js"></script>
+        <!--<script src="<?php //echo Yii::app()->theme->baseUrl; ?>/js/jquery-1.10.2.min.js"></script>-->
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.cookie.js"></script>
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/bootstrap.min.js"></script>
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.mixitup.min.js"></script>

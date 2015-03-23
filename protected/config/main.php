@@ -42,6 +42,21 @@ return array(
     ),
     // application components
     'components' => array(
+        'clientScript' => array(
+            'packages' => array(
+                'jquery' => array(
+                    'baseUrl' => '//ajax.googleapis.com/ajax/libs/jquery/2.0.3/',
+                    'js' => array('jquery.min.js'),
+                    'coreScriptPosition' => CClientScript::POS_HEAD,
+                ),
+                'jquery.ui' => array(
+                    'baseUrl' => '//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/',
+                    'js' => array('jquery-ui.min.js'),
+                    'depends' => array('jquery'),
+                    'coreScriptPosition' => CClientScript::POS_BEGIN,
+                ),
+            ),
+        ),
         // yiistrap configuration
         'bootstrap' => array(
             //'class' => 'bootstrap.components.Bootstrap',

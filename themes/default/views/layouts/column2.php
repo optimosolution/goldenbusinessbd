@@ -12,6 +12,13 @@
     </div>
 </header>
 <div class="container">
+    <?php
+    $this->widget('bootstrap.widgets.TbAlert', array(
+        'block' => true,
+        'fade' => true,
+        'closeText' => '&times;',
+    ));
+    ?>
     <?php echo $content; ?>
 </div> <!-- container  -->
 <?php $this->endContent(); ?>

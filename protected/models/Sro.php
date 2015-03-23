@@ -109,6 +109,33 @@ class Sro extends CActiveRecord {
         ));
     }
 
+    public function search_sro($id) {
+        // @todo Please modify the following code to remove attributes that should not be searched.
+
+        $criteria = new CDbCriteria;
+        $criteria->alias = 't';
+        $criteria->condition = 't.sro_type=' . (int) $id;
+
+        $criteria->compare('t.id', $this->id);
+        $criteria->compare('t.sro_type', $this->sro_type);
+        $criteria->compare('t.sl_no', $this->sl_no);
+        $criteria->compare('t.sro_no', $this->sro_no, true);
+        $criteria->compare('t.sro_date', $this->sro_date, true);
+        $criteria->compare('t.summary', $this->summary, true);
+        $criteria->compare('t.description', $this->description, true);
+        $criteria->compare('t.note', $this->note, true);
+        $criteria->compare('t.attach_file', $this->attach_file, true);
+        $criteria->compare('t.status', $this->status);
+
+        return new CActiveDataProvider($this, array(
+            'criteria' => $criteria,
+            'pagination' => array(
+                'pageSize' => Yii::app()->params['pageSize20'],
+            ),
+            'sort' => array('defaultOrder' => 't.sro_date DESC')
+        ));
+    }
+
     /**
      * Returns the static model of the specified AR class.
      * Please note that you should have this exact method in all your CActiveRecord descendants!
