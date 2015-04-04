@@ -108,7 +108,25 @@ class JurisdictionLocation extends CActiveRecord {
                 ->order('title')
                 ->queryAll();
         echo '<select id="' . $controller . '_' . $field . '" name="' . $controller . '[' . $field . ']" class="span12">';
-        echo '<option value="">--select range--</option>';
+        echo '<option value="">--select--</option>';
+        foreach ($rValue as $key => $values) {
+            if ($values["id"] == $id) {
+                echo '<option selected="selected" value="' . $values["id"] . '" class="' . $values["district"] . '">' . $values["title"] . '</option>';
+            } else {
+                echo '<option value="' . $values["id"] . '" class="' . $values["district"] . '">' . $values["title"] . '</option>';
+            }
+        }
+        echo '</select>';
+    }
+
+    public static function get_type_list_frontend($controller, $field, $id) {
+        $rValue = Yii::app()->db->createCommand()
+                ->select('id,district,title')
+                ->from('{{jurisdiction_location}}')
+                ->order('title')
+                ->queryAll();
+        echo '<select id="' . $controller . '_' . $field . '" name="' . $controller . '[' . $field . ']" class="form-control">';
+        echo '<option value="">--select--</option>';
         foreach ($rValue as $key => $values) {
             if ($values["id"] == $id) {
                 echo '<option selected="selected" value="' . $values["id"] . '" class="' . $values["district"] . '">' . $values["title"] . '</option>';

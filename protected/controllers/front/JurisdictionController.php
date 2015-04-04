@@ -128,11 +128,23 @@ class JurisdictionController extends Controller {
         $model_company->unsetAttributes();  // clear any default values
         if (isset($_GET['JurisdictionCompany']))
             $model_company->attributes = $_GET['JurisdictionCompany'];
+        //Other
+        $model_other = new JurisdictionOther('search');
+        $model_other->unsetAttributes();  // clear any default values
+        if (isset($_GET['JurisdictionOther']))
+            $model_other->attributes = $_GET['JurisdictionOther'];
+        //Other
+        $model_business = new JurisdictionBusiness('search');
+        $model_business->unsetAttributes();  // clear any default values
+        if (isset($_GET['JurisdictionBusiness']))
+            $model_business->attributes = $_GET['JurisdictionBusiness'];
 
         $this->render('index', array(
             'model' => $model,
             'model_profession' => $model_profession,
             'model_company' => $model_company,
+            'model_other' => $model_other,
+            'model_business' => $model_business,
         ));
     }
 

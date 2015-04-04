@@ -118,5 +118,23 @@ class JurisdictionCompany extends CActiveRecord {
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
+    
+    public static function get_list_frontend($controller, $field, $id) {
+        $rValue = Yii::app()->db->createCommand()
+                ->select('id,company_type,letter_specific_name')
+                ->from('{{jurisdiction_company}}')
+                ->order('letter_specific_name')
+                ->queryAll();
+        echo '<select id="' . $controller . '_' . $field . '" name="' . $controller . '[' . $field . ']" class="form-control">';
+        echo '<option value="">--select--</option>';
+        foreach ($rValue as $key => $values) {
+            if ($values["letter_specific_name"] == $id) {
+                echo '<option selected="selected" value="' . $values["letter_specific_name"] . '" class="' . $values["company_type"] . '">' . $values["letter_specific_name"] . '</option>';
+            } else {
+                echo '<option value="' . $values["letter_specific_name"] . '" class="' . $values["company_type"] . '">' . $values["letter_specific_name"] . '</option>';
+            }
+        }
+        echo '</select>';
+    }
 
 }

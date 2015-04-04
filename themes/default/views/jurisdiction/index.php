@@ -8,12 +8,21 @@ $this->breadcrumbs = array(
 $cs = Yii::app()->getClientScript();
 $cs->registerScriptFile(Yii::app()->theme->baseUrl . '/js/jquery.chained.js', CClientScript::POS_END);
 Yii::app()->clientScript->registerScript('chain-select', " 
-//Service
-$('#JurisdictionService_employer_type').chained('#JurisdictionService_district');
-$('#JurisdictionService_letter_specific_name').chained('#JurisdictionService_employer_type');
-//Profession
-$('#JurisdictionProfession_profession_type').chained('#JurisdictionProfession_district');
-$('#JurisdictionProfession_letter_specific_name').chained('#JurisdictionProfession_profession_type');
+    //Service
+    $('#JurisdictionService_employer_type').chained('#JurisdictionService_district');
+    $('#JurisdictionService_letter_specific_name').chained('#JurisdictionService_employer_type');
+    //Profession
+    $('#JurisdictionProfession_profession_type').chained('#JurisdictionProfession_district');
+    $('#JurisdictionProfession_letter_specific_name').chained('#JurisdictionProfession_profession_type');
+    //Company
+    $('#JurisdictionCompany_company_type').chained('#JurisdictionCompany_district');
+    $('#JurisdictionCompany_letter_specific_name').chained('#JurisdictionCompany_company_type');
+    //Other
+    $('#JurisdictionOther_profession_type').chained('#JurisdictionOther_district');
+    $('#JurisdictionOther_letter_specific_name').chained('#JurisdictionOther_profession_type');
+    //Business
+    $('#JurisdictionBusiness_business_type').chained('#JurisdictionBusiness_btype');
+    $('#JurisdictionBusiness_letter_specific_name').chained('#JurisdictionBusiness_business_type');
 ");
 ?>
 
@@ -111,7 +120,42 @@ $('#JurisdictionProfession_letter_specific_name').chained('#JurisdictionProfessi
                 <div class="clearfix"></div>
             </div>
             <div class="tab-pane" id="tab3">
-
+                <?php
+                $this->renderPartial('_search_business', array(
+                    'model_business' => $model_business,
+                ));
+                $this->widget('zii.widgets.grid.CGridView', array(
+                    'id' => 'jurisdiction-business-grid',
+                    'dataProvider' => $model_business->search(),
+                    //'filter' => $model_company,
+                    'columns' => array(
+                        array(
+                            'name' => 'zone',
+                            'type' => 'raw',
+                            'value' => 'JurisdictionZone::get_title($data->zone)',
+                            'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Zone'),
+                        ),
+                        array(
+                            'name' => 'range',
+                            'type' => 'raw',
+                            'value' => 'JurisdictionRange::get_title($data->range)',
+                            'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Ranges'),
+                        ),
+                        array(
+                            'name' => 'circle',
+                            'type' => 'raw',
+                            'value' => '$data->circle0->tax_taxes_circle',
+                            'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Circle'),
+                        ),
+                        array(
+                            'header' => 'Address',
+                            'type' => 'raw',
+                            'value' => 'JurisdictionCircle::get_address($data->circle)',
+                            'htmlOptions' => array('style' => "text-align:left;width:300px;", 'title' => 'Address'),
+                        ),
+                    ),
+                ));
+                ?>
                 <div class="clearfix"></div>
             </div>
             <div class="tab-pane" id="tab4">
@@ -154,7 +198,42 @@ $('#JurisdictionProfession_letter_specific_name').chained('#JurisdictionProfessi
                 <div class="clearfix"></div>
             </div>
             <div class="tab-pane" id="tab5">
-
+                <?php
+                $this->renderPartial('_search_other', array(
+                    'model_other' => $model_other,
+                ));
+                $this->widget('zii.widgets.grid.CGridView', array(
+                    'id' => 'jurisdiction-other-grid',
+                    'dataProvider' => $model_other->search(),
+                    //'filter' => $model_company,
+                    'columns' => array(
+                        array(
+                            'name' => 'zone',
+                            'type' => 'raw',
+                            'value' => 'JurisdictionZone::get_title($data->zone)',
+                            'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Zone'),
+                        ),
+                        array(
+                            'name' => 'range',
+                            'type' => 'raw',
+                            'value' => 'JurisdictionRange::get_title($data->range)',
+                            'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Ranges'),
+                        ),
+                        array(
+                            'name' => 'circle',
+                            'type' => 'raw',
+                            'value' => '$data->circle0->tax_taxes_circle',
+                            'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Circle'),
+                        ),
+                        array(
+                            'header' => 'Address',
+                            'type' => 'raw',
+                            'value' => 'JurisdictionCircle::get_address($data->circle)',
+                            'htmlOptions' => array('style' => "text-align:left;width:300px;", 'title' => 'Address'),
+                        ),
+                    ),
+                ));
+                ?>
                 <div class="clearfix"></div>
             </div>
         </div>
