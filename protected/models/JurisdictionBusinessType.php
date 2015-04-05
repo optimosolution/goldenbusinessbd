@@ -103,6 +103,24 @@ class JurisdictionBusinessType extends CActiveRecord {
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
+    
+    public static function get_type_list($controller, $field, $id) {
+        $rValue = Yii::app()->db->createCommand()
+                ->select('id,district,title')
+                ->from('{{jurisdiction_business_type}}')
+                ->order('title')
+                ->queryAll();
+        echo '<select id="' . $controller . '_' . $field . '" name="' . $controller . '[' . $field . ']" class="span12">';
+        echo '<option value="">--select type--</option>';
+        foreach ($rValue as $key => $values) {
+            if ($values["id"] == $id) {
+                echo '<option selected="selected" value="' . $values["id"] . '" class="' . $values["district"] . '">' . $values["title"] . '</option>';
+            } else {
+                echo '<option value="' . $values["id"] . '" class="' . $values["district"] . '">' . $values["title"] . '</option>';
+            }
+        }
+        echo '</select>';
+    }
 
     public static function get_type_list_frontend($controller, $field, $id) {
         $rValue = Yii::app()->db->createCommand()
