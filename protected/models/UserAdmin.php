@@ -178,7 +178,7 @@ class UserAdmin extends CActiveRecord {
         if (empty($date) || $date == '0000-00-00' || $date == '0000-00-00 00:00:00') {
             return null;
         } else {
-            return date("M t, Y, g:i:s A", strtotime($date));
+			return date("M j, Y, g:i:s A", strtotime($date));
         }
     }
 
@@ -186,7 +186,7 @@ class UserAdmin extends CActiveRecord {
         if (empty($date) || $date == '0000-00-00' || $date == '0000-00-00 00:00:00') {
             return null;
         } else {
-            return date("M t, Y", strtotime($date));
+            return date("M j, Y", strtotime($date));
         }
     }
 
