@@ -104,7 +104,8 @@
                                 </ul>
                             </li> <!-- dropdown -->
                             <li class="">
-                                <?php echo CHtml::link('Jurisdiction', array('content/view', 'id' => 1228), array('class' => '')); ?>
+                                <?php //echo CHtml::link('Jurisdiction', array('content/view', 'id' => 1228), array('class' => '')); ?>
+                                <?php echo CHtml::link('Jurisdiction', array('jurisdiction/index'), array('class' => '')); ?>
                             </li>
                             <li class="">
                                 <?php echo CHtml::link('Tax Calculator', array('document/index', 'id' => 182), array('class' => '')); ?>
@@ -237,7 +238,7 @@
             <a href="#header"><i class="fa fa-chevron-up"></i></a>
         </div>
         <!-- Scripts -->
-        <!--<script src="<?php //echo Yii::app()->theme->baseUrl; ?>/js/jquery-1.10.2.min.js"></script>-->
+        <script src="<?php echo Yii::app()->theme->baseUrl;   ?>/js/jquery-1.10.2.min.js"></script>
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.cookie.js"></script>
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/bootstrap.min.js"></script>
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.mixitup.min.js"></script>
