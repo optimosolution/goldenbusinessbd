@@ -6,7 +6,8 @@ $form = $this->beginWidget('CActiveForm', array(
 ?>
 <div class="row">
     <div class="col-md-2">
-        <?php echo $form->dropDownList($model_business, 'district', CHtml::listData(JurisdictionDistrict::model()->findAll(array('condition' => '', "order" => "taxes_area")), 'id', 'taxes_area'), array('empty' => '--please select--', 'class' => 'form-control')); ?>
+        <?php //echo $form->dropDownList($model_business, 'district', CHtml::listData(JurisdictionDistrict::model()->findAll(array('condition' => '', "order" => "taxes_area")), 'id', 'taxes_area'), array('empty' => '--please select--', 'class' => 'form-control')); ?>
+        <?php echo JurisdictionBusinessType::get_district_list_frontend('JurisdictionBusiness', 'district', $model_business->district); ?>
     </div>
     <div class="col-md-2">
         <?php echo $form->dropDownList($model_business, 'btype', array('1' => 'Location', '0' => 'Business Type'), array('class' => 'form-control')); ?>

@@ -103,7 +103,7 @@ class JurisdictionBusinessType extends CActiveRecord {
     public static function model($className = __CLASS__) {
         return parent::model($className);
     }
-    
+
     public static function get_type_list($controller, $field, $id) {
         $rValue = Yii::app()->db->createCommand()
                 ->select('id,district,title')
@@ -135,6 +135,26 @@ class JurisdictionBusinessType extends CActiveRecord {
                 echo '<option selected="selected" value="' . $values["id"] . '" class="' . $values["btype"] . '">' . $values["title"] . '</option>';
             } else {
                 echo '<option value="' . $values["id"] . '" class="' . $values["btype"] . '">' . $values["title"] . '</option>';
+            }
+        }
+        echo '</select>';
+    }
+
+    public static function get_district_list_frontend($controller, $field, $id) {
+        $rValue = Yii::app()->db->createCommand()
+                ->select('id,district,btype,title')
+                ->from('{{jurisdiction_business_type}}')
+                ->where('district IS NOT NULL')
+                ->order('district')
+                ->group('district')
+                ->queryAll();
+        echo '<select id="' . $controller . '_' . $field . '" name="' . $controller . '[' . $field . ']" class="form-control">';
+        echo '<option value="">--select--</option>';
+        foreach ($rValue as $key => $values) {
+            if ($values["district"] == $id) {
+                echo '<option selected="selected" value="' . $values["district"] . '" class="' . $values["btype"] . '">' . JurisdictionDistrict::get_district($values["district"]) . '</option>';
+            } else {
+                echo '<option value="' . $values["district"] . '" class="' . $values["btype"] . '">' . JurisdictionDistrict::get_district($values["district"]) . '</option>';
             }
         }
         echo '</select>';

@@ -21,7 +21,8 @@ Yii::app()->clientScript->registerScript('chain-select', "
     $('#JurisdictionOther_profession_type').chained('#JurisdictionOther_district');
     $('#JurisdictionOther_letter_specific_name').chained('#JurisdictionOther_profession_type');
     //Business
-    $('#JurisdictionBusiness_business_type').chained('#JurisdictionBusiness_btype');
+    $('#JurisdictionBusiness_district').chained('#JurisdictionBusiness_btype');
+    $('#JurisdictionBusiness_business_type').chained('#JurisdictionBusiness_district');
     $('#JurisdictionBusiness_letter_specific_name').chained('#JurisdictionBusiness_business_type');
 ");
 ?>
@@ -50,6 +51,17 @@ Yii::app()->clientScript->registerScript('chain-select', "
                     'id' => 'jurisdiction-service-grid',
                     'dataProvider' => $model->search(),
                     //'filter' => $model,
+                    'htmlOptions' => array('class' => ''),
+                    'itemsCssClass' => 'table table-striped',
+                    'template' => '{items}{summary}{pager}',
+                    'pager' => array(
+                        'htmlOptions' => array(
+                            'class' => 'pagination',
+                        ),
+                        'header' => '',
+                        'selectedPageCssClass' => 'active',
+                    ),
+                    'pagerCssClass' => 'widget-footer',
                     'columns' => array(
                         array(
                             'name' => 'zone',
@@ -89,6 +101,17 @@ Yii::app()->clientScript->registerScript('chain-select', "
                     'id' => 'jurisdiction-profession-grid',
                     'dataProvider' => $model_profession->search(),
                     //'filter' => $model,
+                    'htmlOptions' => array('class' => ''),
+                    'itemsCssClass' => 'table table-striped',
+                    'template' => '{items}{summary}{pager}',
+                    'pager' => array(
+                        'htmlOptions' => array(
+                            'class' => 'pagination',
+                        ),
+                        'header' => '',
+                        'selectedPageCssClass' => 'active',
+                    ),
+                    'pagerCssClass' => 'widget-footer',
                     'columns' => array(
                         array(
                             'name' => 'zone',
@@ -128,6 +151,17 @@ Yii::app()->clientScript->registerScript('chain-select', "
                     'id' => 'jurisdiction-business-grid',
                     'dataProvider' => $model_business->search(),
                     //'filter' => $model_company,
+                    'htmlOptions' => array('class' => ''),
+                    'itemsCssClass' => 'table table-striped',
+                    'template' => '{items}{summary}{pager}',
+                    'pager' => array(
+                        'htmlOptions' => array(
+                            'class' => 'pagination',
+                        ),
+                        'header' => '',
+                        'selectedPageCssClass' => 'active',
+                    ),
+                    'pagerCssClass' => 'widget-footer',
                     'columns' => array(
                         array(
                             'name' => 'zone',
@@ -167,6 +201,17 @@ Yii::app()->clientScript->registerScript('chain-select', "
                     'id' => 'jurisdiction-company-grid',
                     'dataProvider' => $model_company->search(),
                     //'filter' => $model_company,
+                    'htmlOptions' => array('class' => ''),
+                    'itemsCssClass' => 'table table-striped',
+                    'template' => '{items}{summary}{pager}',
+                    'pager' => array(
+                        'htmlOptions' => array(
+                            'class' => 'pagination',
+                        ),
+                        'header' => '',
+                        'selectedPageCssClass' => 'active',
+                    ),
+                    'pagerCssClass' => 'widget-footer',
                     'columns' => array(
                         array(
                             'name' => 'zone',
@@ -206,6 +251,17 @@ Yii::app()->clientScript->registerScript('chain-select', "
                     'id' => 'jurisdiction-other-grid',
                     'dataProvider' => $model_other->search(),
                     //'filter' => $model_company,
+                    'htmlOptions' => array('class' => ''),
+                    'itemsCssClass' => 'table table-striped',
+                    'template' => '{items}{summary}{pager}',
+                    'pager' => array(
+                        'htmlOptions' => array(
+                            'class' => 'pagination',
+                        ),
+                        'header' => '',
+                        'selectedPageCssClass' => 'active',
+                    ),
+                    'pagerCssClass' => 'widget-footer',
                     'columns' => array(
                         array(
                             'name' => 'zone',
