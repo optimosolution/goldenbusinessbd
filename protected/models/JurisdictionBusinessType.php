@@ -124,7 +124,7 @@ class JurisdictionBusinessType extends CActiveRecord {
 
     public static function get_type_list_frontend($controller, $field, $id) {
         $rValue = Yii::app()->db->createCommand()
-                ->select('id,btype,title')
+                ->select('id,district,title')
                 ->from('{{jurisdiction_business_type}}')
                 ->order('title')
                 ->queryAll();
@@ -132,9 +132,9 @@ class JurisdictionBusinessType extends CActiveRecord {
         echo '<option value="">--select--</option>';
         foreach ($rValue as $key => $values) {
             if ($values["id"] == $id) {
-                echo '<option selected="selected" value="' . $values["id"] . '" class="' . $values["btype"] . '">' . $values["title"] . '</option>';
+                echo '<option selected="selected" value="' . $values["id"] . '" class="' . $values["district"] . '">' . $values["title"] . '</option>';
             } else {
-                echo '<option value="' . $values["id"] . '" class="' . $values["btype"] . '">' . $values["title"] . '</option>';
+                echo '<option value="' . $values["id"] . '" class="' . $values["district"] . '">' . $values["title"] . '</option>';
             }
         }
         echo '</select>';
