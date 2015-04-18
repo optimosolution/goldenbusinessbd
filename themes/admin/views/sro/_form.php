@@ -44,14 +44,20 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
             ),
                 ), true);
         ?>
-    </div>   
+    </div> 
+    <div class="row-fluid">
+        <div class="span12">
+            <?php echo $form->textAreaControlGroup($model, 'description', array('rows' => 2, 'span' => 5)); ?>
+        </div>
+    </div>
+    <?php //echo $form->textFieldControlGroup($model, 'summary', array('span' => 5, 'maxlength' => 250)); ?>   
     <div class="control-group" style="clear: left;">
-        <label for="form-field-1" class="control-label"><?php echo $form->labelEx($model, 'description'); ?></label>
+        <label for="form-field-1" class="control-label"><?php echo $form->labelEx($model, 'note'); ?></label>
         <div class="controls">
             <?php
             $this->widget('application.extensions.yii-ckeditor.CKEditorWidget', array(
                 'model' => $model,
-                'attribute' => 'description',
+                'attribute' => 'note',
                 // editor options http://docs.ckeditor.com/#!/api/CKEDITOR.config
                 'config' => array(
                     'language' => 'en',
@@ -61,8 +67,6 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
             ?>
         </div>
     </div>
-    <?php echo $form->textFieldControlGroup($model, 'summary', array('span' => 5, 'maxlength' => 250)); ?>
-    <?php echo $form->textAreaControlGroup($model, 'note', array('rows' => 2, 'span' => 5)); ?>
     <div class="row-fluid">
         <div class="span5">
             <?php echo $form->fileFieldControlGroup($model, 'attach_file', array('maxlength' => 255, 'class' => 'span12')); ?>

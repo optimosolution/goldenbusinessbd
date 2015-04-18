@@ -33,10 +33,17 @@ $this->widget('zii.widgets.grid.CGridView', array(
             'htmlOptions' => array('style' => "text-align:center;width:120px;"),
         ),
         array(
-            'name' => 'summary',
+            'name' => 'description',
             'type' => 'raw',
-            'value' => '$data->summary',
-            'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Summary'),
+            'value' => '$data->description',
+            'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Description'),
+        ),
+        array(
+            'name' => 'status',
+            'type' => 'raw',
+            'filter' => CHtml::activeDropDownList($model, 'status', CHtml::listData(SroStatus::model()->findAll(array("order" => "id")), 'id', 'title'), array('empty' => 'All')),
+            'value' => 'SroStatus::getStatus($data->status)',
+            'htmlOptions' => array('style' => "text-align:left;", 'title' => 'Status'),
         ),
         array(
             'header' => 'Download',

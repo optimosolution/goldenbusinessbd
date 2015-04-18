@@ -41,13 +41,13 @@ class ContentCategory extends CActiveRecord {
         // will receive user inputs.
         return array(
             array('title', 'required'),
-            array('published, created_by, modified_by', 'numerical', 'integerOnly' => true),
+            array('published, created_by, modified_by, ordering', 'numerical', 'integerOnly' => true),
             array('parent_id', 'length', 'max' => 11),
             array('title, alias', 'length', 'max' => 255),
             array('created_time, modified_time,description', 'safe'),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('id, parent_id, title, alias, description, published, created_by, created_time, modified_by, modified_time', 'safe', 'on' => 'search'),
+            array('id, parent_id, title, alias, description, published, created_by, created_time, modified_by, modified_time, ordering', 'safe', 'on' => 'search'),
         );
     }
 
@@ -76,6 +76,7 @@ class ContentCategory extends CActiveRecord {
             'created_time' => 'Created Time',
             'modified_by' => 'Modified By',
             'modified_time' => 'Modified Time',
+            'ordering' => 'Ordering',
         );
     }
 
@@ -99,6 +100,7 @@ class ContentCategory extends CActiveRecord {
         $criteria->compare('created_time', $this->created_time, true);
         $criteria->compare('modified_by', $this->modified_by);
         $criteria->compare('modified_time', $this->modified_time, true);
+        $criteria->compare('ordering', $this->ordering);
 
         return new CActiveDataProvider($this, array(
             'criteria' => $criteria,

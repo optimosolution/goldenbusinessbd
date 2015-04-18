@@ -360,7 +360,7 @@ class Controller extends CController {
                 ->select('id,title,created_time')
                 ->from('{{content_category}}')
                 ->where('published=1 AND parent_id=' . $id)
-                ->order('title ASC')
+                ->order('ordering ASC')
                 ->queryAll();
         echo '<div class="pricing-box-content">';
         echo '<ul>';
@@ -376,7 +376,7 @@ class Controller extends CController {
                 ->select('id,title,created_time')
                 ->from('{{content_category}}')
                 ->where('published=1 AND parent_id=' . $id)
-                ->order('title ASC')
+                ->order('ordering ASC')
                 //->order('rand()')
                 //->limit(10)
                 ->queryAll();

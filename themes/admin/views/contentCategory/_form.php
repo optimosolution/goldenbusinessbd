@@ -23,6 +23,7 @@ $this->widget('application.extensions.xheditor.JXHEditor', array(
     'htmlOptions' => array('class' => 'xheditor', 'style' => 'width: 100%; height: 150px;'),
 ));
 ?>
+<?php echo $form->textFieldControlGroup($model, 'ordering', array('class' => 'span5', 'maxlength' => 11)); ?>
 <?php echo $form->dropDownListControlGroup($model, 'published', array('1' => 'Yes', '0' => 'No')); ?>
 <div class="form-actions">
     <?php echo TbHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', array('color' => TbHtml::BUTTON_COLOR_PRIMARY)); ?>
