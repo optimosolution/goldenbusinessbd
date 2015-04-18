@@ -4,16 +4,16 @@ $form = $this->beginWidget('CActiveForm', array(
     'method' => 'get',
         ));
 ?>
-<div class="row">
+<div class="row">    
     <div class="col-md-2">
-        <?php //echo $form->dropDownList($model_business, 'district', CHtml::listData(JurisdictionDistrict::model()->findAll(array('condition' => '', "order" => "taxes_area")), 'id', 'taxes_area'), array('empty' => '--please select--', 'class' => 'form-control')); ?>
-        <?php echo JurisdictionBusinessType::get_district_list_frontend('JurisdictionBusiness', 'district', $model_business->district); ?>
-    </div>
+        <?php echo $form->dropDownList($model_business, 'district', CHtml::listData(JurisdictionDistrict::model()->findAll(array('condition' => '', "order" => "taxes_area")), 'id', 'taxes_area'), array('empty' => '--please select--', 'class' => 'form-control')); ?>
+        <?php //echo JurisdictionBusinessType::get_district_list_frontend('JurisdictionBusiness', 'district', $model_business->district); ?>
+    </div>    
     <div class="col-md-2">
         <?php echo $form->dropDownList($model_business, 'btype', array('1' => 'Location', '0' => 'Business Type'), array('class' => 'form-control')); ?>
     </div>
     <div class="col-md-2">
-        <?php echo JurisdictionBusinessType::get_type_list_frontend('JurisdictionBusiness', 'business_type', $model_business->business_type); ?>
+        <?php echo JurisdictionBusinessType::get_type_list_business('JurisdictionBusiness', 'business_type', $model_business->business_type); ?>
     </div>
     <div class="col-md-2">
         <?php echo JurisdictionBusiness::get_list_frontend('JurisdictionBusiness', 'letter_specific_name', $model_business->letter_specific_name); ?>

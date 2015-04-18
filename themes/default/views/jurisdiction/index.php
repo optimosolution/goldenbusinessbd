@@ -21,9 +21,9 @@ Yii::app()->clientScript->registerScript('chain-select', "
     $('#JurisdictionOther_profession_type').chained('#JurisdictionOther_district');
     $('#JurisdictionOther_letter_specific_name').chained('#JurisdictionOther_profession_type');
     //Business
-    $('#JurisdictionBusiness_district').chained('#JurisdictionBusiness_btype');
-    $('#JurisdictionBusiness_business_type').chained('#JurisdictionBusiness_district');
-    $('#JurisdictionBusiness_letter_specific_name').chained('#JurisdictionBusiness_business_type');
+    //$('#JurisdictionBusiness_district').chained('#JurisdictionBusiness_btype');
+    $('#JurisdictionBusiness_business_type').chained('#JurisdictionBusiness_district, #JurisdictionBusiness_btype');
+    $('#JurisdictionBusiness_letter_specific_name').chained('#JurisdictionBusiness_business_type');   
 ");
 ?>
 

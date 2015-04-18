@@ -140,13 +140,31 @@ class JurisdictionBusinessType extends CActiveRecord {
         echo '</select>';
     }
 
-    public static function get_district_list_frontend($controller, $field, $id) {
+    public static function get_type_list_business($controller, $field, $id) {
         $rValue = Yii::app()->db->createCommand()
                 ->select('id,district,btype,title')
                 ->from('{{jurisdiction_business_type}}')
+                ->order('title')
+                ->queryAll();
+        echo '<select id="' . $controller . '_' . $field . '" name="' . $controller . '[' . $field . ']" class="form-control">';
+        echo '<option value="">--select--</option>';
+        foreach ($rValue as $key => $values) {
+            if ($values["id"] == $id) {
+                echo '<option selected="selected" value="' . $values["id"] . '" class="' . $values["district"] . '&#92;' . $values["btype"] . '">' . $values["title"] . '</option>';
+            } else {
+                echo '<option value="' . $values["id"] . '" class="' . $values["district"] . '&#92;' . $values["btype"] . '">' . $values["title"] . '</option>';
+            }
+        }
+        echo '</select>';
+    }
+
+    public static function get_district_list_frontend($controller, $field, $id) {
+        $rValue = Yii::app()->db->createCommand()
+                ->select('id,district,btype')
+                ->from('{{jurisdiction_business_type}}')
                 ->where('district IS NOT NULL')
                 ->order('district')
-                ->group('district')
+                ->group('btype, district')
                 ->queryAll();
         echo '<select id="' . $controller . '_' . $field . '" name="' . $controller . '[' . $field . ']" class="form-control">';
         echo '<option value="">--select--</option>';
