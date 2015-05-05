@@ -20,7 +20,7 @@
         <div class="panel-footer">
             <div class="row">
                 <div class="col-lg-10 col-md-9 col-sm-8">
-                    <i class="fa fa-clock-o"></i> <?php echo Content::get_date_time(CHtml::encode($data->created)); ?> <i class="fa fa-users"> </i> <?php echo CHtml::encode($data->hits); ?> hits
+                    <i class="fa fa-users"> </i> <?php echo CHtml::encode($data->hits); ?> hits
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-4">
                     <?php echo CHtml::link('Read more &raquo;', array('/content/view', 'id' => CHtml::encode($data->id)), array('class' => 'pull-right')); ?>

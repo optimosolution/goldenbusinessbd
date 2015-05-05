@@ -60,7 +60,7 @@ $('.jurisdiction-other-form form').submit(function(){
 ?>
 <div class="row">
     <div class="col-xs-12">
-        <h2 class="section-title">Jurisdiction Finder</h2>
+        <h2 class="section-title">Jurisdiction Finder, Please select your desire category</h2>
     </div>
     <div class="col-md-12">
         <!-- Nav tabs -->
