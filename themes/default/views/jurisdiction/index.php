@@ -25,8 +25,39 @@ Yii::app()->clientScript->registerScript('chain-select', "
     $('#JurisdictionBusiness_business_type').chained('#JurisdictionBusiness_district, #JurisdictionBusiness_btype');
     $('#JurisdictionBusiness_letter_specific_name').chained('#JurisdictionBusiness_business_type');   
 ");
+Yii::app()->clientScript->registerScript('search', "
+$('.jurisdiction-service-form form').submit(function(){
+	$('#jurisdiction-service-grid').yiiGridView('update', {
+		data: $(this).serialize()
+	});
+	return false;
+});
+$('.jurisdiction-profession-form form').submit(function(){
+	$('#jurisdiction-profession-grid').yiiGridView('update', {
+		data: $(this).serialize()
+	});
+	return false;
+});
+$('.jurisdiction-business-form form').submit(function(){
+	$('#jurisdiction-business-grid').yiiGridView('update', {
+		data: $(this).serialize()
+	});
+	return false;
+});
+$('.jurisdiction-company-form form').submit(function(){
+	$('#jurisdiction-company-grid').yiiGridView('update', {
+		data: $(this).serialize()
+	});
+	return false;
+});
+$('.jurisdiction-other-form form').submit(function(){
+	$('#jurisdiction-other-grid').yiiGridView('update', {
+		data: $(this).serialize()
+	});
+	return false;
+});
+");
 ?>
-
 <div class="row">
     <div class="col-xs-12">
         <h2 class="section-title">Jurisdiction Finder</h2>
@@ -43,10 +74,14 @@ Yii::app()->clientScript->registerScript('chain-select', "
         <!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane active" id="tab1">
+                <div class="jurisdiction-service-form" >
+                    <?php
+                    $this->renderPartial('_search', array(
+                        'model' => $model,
+                    ));
+                    ?>
+                </div>
                 <?php
-                $this->renderPartial('_search', array(
-                    'model' => $model,
-                ));
                 $this->widget('zii.widgets.grid.CGridView', array(
                     'id' => 'jurisdiction-service-grid',
                     'dataProvider' => $model->search(),
@@ -93,10 +128,14 @@ Yii::app()->clientScript->registerScript('chain-select', "
                 <div class="clearfix"></div>
             </div>
             <div class="tab-pane" id="tab2">
+                <div class="jurisdiction-profession-form" >
+                    <?php
+                    $this->renderPartial('_search_profession', array(
+                        'model_profession' => $model_profession,
+                    ));
+                    ?>
+                </div>
                 <?php
-                $this->renderPartial('_search_profession', array(
-                    'model_profession' => $model_profession,
-                ));
                 $this->widget('zii.widgets.grid.CGridView', array(
                     'id' => 'jurisdiction-profession-grid',
                     'dataProvider' => $model_profession->search(),
@@ -143,10 +182,14 @@ Yii::app()->clientScript->registerScript('chain-select', "
                 <div class="clearfix"></div>
             </div>
             <div class="tab-pane" id="tab3">
+                <div class="jurisdiction-business-form" >
+                    <?php
+                    $this->renderPartial('_search_business', array(
+                        'model_business' => $model_business,
+                    ));
+                    ?>
+                </div>
                 <?php
-                $this->renderPartial('_search_business', array(
-                    'model_business' => $model_business,
-                ));
                 $this->widget('zii.widgets.grid.CGridView', array(
                     'id' => 'jurisdiction-business-grid',
                     'dataProvider' => $model_business->search(),
@@ -193,10 +236,14 @@ Yii::app()->clientScript->registerScript('chain-select', "
                 <div class="clearfix"></div>
             </div>
             <div class="tab-pane" id="tab4">
+                <div class="jurisdiction-company-form" >
+                    <?php
+                    $this->renderPartial('_search_company', array(
+                        'model_company' => $model_company,
+                    ));
+                    ?>
+                </div>
                 <?php
-                $this->renderPartial('_search_company', array(
-                    'model_company' => $model_company,
-                ));
                 $this->widget('zii.widgets.grid.CGridView', array(
                     'id' => 'jurisdiction-company-grid',
                     'dataProvider' => $model_company->search(),
@@ -243,10 +290,14 @@ Yii::app()->clientScript->registerScript('chain-select', "
                 <div class="clearfix"></div>
             </div>
             <div class="tab-pane" id="tab5">
+                <div class="jurisdiction-other-form" >
+                    <?php
+                    $this->renderPartial('_search_other', array(
+                        'model_other' => $model_other,
+                    ));
+                    ?>
+                </div>
                 <?php
-                $this->renderPartial('_search_other', array(
-                    'model_other' => $model_other,
-                ));
                 $this->widget('zii.widgets.grid.CGridView', array(
                     'id' => 'jurisdiction-other-grid',
                     'dataProvider' => $model_other->search(),

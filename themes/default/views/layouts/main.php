@@ -238,7 +238,12 @@
             <a href="#header"><i class="fa fa-chevron-up"></i></a>
         </div>
         <!-- Scripts -->
-        <script src="<?php echo Yii::app()->theme->baseUrl;   ?>/js/jquery-1.10.2.min.js"></script>
+        <script>
+            if (!window.jQuery) {
+                document.write('<script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery-1.10.2.min.js"><\/script>');
+            }
+        </script>
+<!--        <script src="<?php //echo Yii::app()->theme->baseUrl;  ?>/js/jquery-1.10.2.min.js"></script>-->
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.cookie.js"></script>
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/bootstrap.min.js"></script>
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.mixitup.min.js"></script>
