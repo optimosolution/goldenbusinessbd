@@ -144,7 +144,7 @@ class Controller extends CController {
             echo '<div class="panel-footer">';
             echo '<div class="row">';
             echo '<div class="col-lg-10 col-md-9 col-sm-8">';
-            echo '<i class="fa fa-clock-o"></i> ' . UserAdmin::get_date($values['created']) . '.';
+            //echo '<i class="fa fa-clock-o"></i> ' . UserAdmin::get_date($values['created']) . '.';
             echo '</div>';
             echo '<div class="col-lg-2 col-md-3 col-sm-4">';
             echo CHtml::link('Read more &raquo;', array('/content/view', 'id' => $values['id']), array('class' => 'pull-right'));
@@ -192,7 +192,7 @@ class Controller extends CController {
             }
             echo '<div class = "media-body">';
             echo '<h4 class = "media-heading">' . CHtml::link($values['title'], array('/content/view', 'id' => $values['id'])) . '</h4>';
-            echo '<small>' . UserAdmin::get_date($values['created']) . '</small>';
+            //echo '<small>' . UserAdmin::get_date($values['created']) . '</small>';
             echo '</div>';
             echo '</div>';
         }
@@ -220,7 +220,7 @@ class Controller extends CController {
             }
             echo '<div class = "media-body">';
             echo '<h4 class = "media-heading">' . CHtml::link($values['title'], array('/content/view', 'id' => $values['id'])) . '</h4>';
-            echo '<small>' . UserAdmin::get_date($values['created']) . '</small>';
+            //echo '<small>' . UserAdmin::get_date($values['created']) . '</small>';
             echo '</div>';
             echo '</div>';
         }

@@ -116,28 +116,43 @@ class JurisdictionController extends Controller {
         //Service
         $model = new JurisdictionService('search');
         $model->unsetAttributes();  // clear any default values
-        if (isset($_GET['JurisdictionService']))
+        if (isset($_GET['JurisdictionService'])) {
             $model->attributes = $_GET['JurisdictionService'];
+        } else {
+            $model->district = 0;
+        }
         //Profession
         $model_profession = new JurisdictionProfession('search');
         $model_profession->unsetAttributes();  // clear any default values
-        if (isset($_GET['JurisdictionProfession']))
+        if (isset($_GET['JurisdictionProfession'])) {
             $model_profession->attributes = $_GET['JurisdictionProfession'];
+        } else {
+            $model_profession->district = 0;
+        }
         //Company
         $model_company = new JurisdictionCompany('search');
         $model_company->unsetAttributes();  // clear any default values
-        if (isset($_GET['JurisdictionCompany']))
+        if (isset($_GET['JurisdictionCompany'])) {
             $model_company->attributes = $_GET['JurisdictionCompany'];
+        } else {
+            $model_company->district = 0;
+        }
         //Other
         $model_other = new JurisdictionOther('search');
         $model_other->unsetAttributes();  // clear any default values
-        if (isset($_GET['JurisdictionOther']))
+        if (isset($_GET['JurisdictionOther'])) {
             $model_other->attributes = $_GET['JurisdictionOther'];
+        } else {
+            $model_other->district = 0;
+        }
         //Other
         $model_business = new JurisdictionBusiness('search');
         $model_business->unsetAttributes();  // clear any default values
-        if (isset($_GET['JurisdictionBusiness']))
+        if (isset($_GET['JurisdictionBusiness'])) {
             $model_business->attributes = $_GET['JurisdictionBusiness'];
+        } else {
+            $model_business->district = 0;
+        }
 
         $this->render('index', array(
             'model' => $model,
