@@ -124,6 +124,7 @@ class JurisdictionProfession extends CActiveRecord {
         $rValue = Yii::app()->db->createCommand()
                 ->select('id,profession_type,letter_specific_name')
                 ->from('{{jurisdiction_profession}}')
+                ->where('CHAR_LENGTH(letter_specific_name) >= 1')
                 ->order('letter_specific_name')
                 ->queryAll();
         echo '<select id="' . $controller . '_' . $field . '" name="' . $controller . '[' . $field . ']" class="form-control">';
