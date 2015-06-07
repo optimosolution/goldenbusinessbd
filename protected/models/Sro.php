@@ -39,7 +39,7 @@ class Sro extends CActiveRecord {
             array('sro_type, sl_no, status', 'numerical', 'integerOnly' => true),
             array('sro_no, summary, attach_file', 'length', 'max' => 250),
             array('description, note', 'safe'),
-            array('attach_file', 'file', 'types' => 'jpg,jpeg,gif,png,txt,pdf,doc,docx,xls,xlsx,ppt,pptx,odt', 'allowEmpty' => true, 'minSize' => 2, 'maxSize' => 1024 * 1024 * 5, 'tooLarge' => 'The file was larger than 5MB. Please upload a smaller file.', 'wrongType' => 'File format was not supported.', 'tooSmall' => 'File size was too small or empty.'),
+            array('attach_file', 'file', 'types' => 'jpg,jpeg,gif,png,txt,pdf,doc,docx,xls,xlsx,ppt,pptx,odt', 'allowEmpty' => true, 'minSize' => 2, 'maxSize' => 1024 * 1024 * 50, 'tooLarge' => 'The file was larger than 50MB. Please upload a smaller file.', 'wrongType' => 'File format was not supported.', 'tooSmall' => 'File size was too small or empty.'),
             // The following rule is used by search().
             // @todo Please remove those attributes that should not be searched.
             array('id, sro_type, sl_no, sro_no, sro_date, summary, description, note, attach_file, status', 'safe', 'on' => 'search'),

@@ -73,10 +73,8 @@
                                 <ul class="dropdown-menu">                                    
                                     <li><?php echo CHtml::link('Ordinance', array('content/index', 'id' => 193), array('class' => '')); ?></li>
                                     <li><?php echo CHtml::link('Rules', array('content/index', 'id' => 75), array('class' => '')); ?></li>
-                                    <li><?php echo CHtml::link('Finance Act', array('document/index', 'id' => 74), array('class' => '')); ?></li>
-                                    <li><?php echo CHtml::link('Paripatra 2013-2014', array('content/index', 'id' => 188), array('class' => '')); ?></li>
-                                    <li><?php echo CHtml::link('Paripatra - 2010-2011', array('content/index', 'id' => 166), array('class' => '')); ?></li>
-                                    <li><?php echo CHtml::link('Paripatra- 2009-2010', array('content/view', 'id' => 474), array('class' => '')); ?></li>
+                                    <li><?php echo CHtml::link('Finance Act', array('document/index', 'id' => 209), array('class' => '')); ?></li>
+                                    <li><?php echo CHtml::link('Paripatra', array('content/index', 'id' => 214), array('class' => '')); ?></li>        
                                     <li>
                                         <?php //echo CHtml::link('SRO', array('content/index', 'id' => 72), array('class' => '')); ?>
                                         <?php echo CHtml::link('SRO', array('sro/index', 'id' => 1), array('class' => '')); ?>
@@ -95,11 +93,9 @@
                                         <?php //echo CHtml::link('SRO', array('document/index', 'id' => 78), array('class' => '')); ?>
                                         <?php echo CHtml::link('SRO', array('sro/index', 'id' => 3), array('class' => '')); ?>
                                     </li>
-                                    <li><?php echo CHtml::link('VAT Act Second Schedule 2010', '#', array('class' => '')); ?></li>
-                                    <li><?php echo CHtml::link('VAT Act First Schedule 2010', '#', array('class' => '')); ?></li>
-                                    <li><?php echo CHtml::link('VAT Act Third Schedule 2010', '#', array('class' => '')); ?></li>
-                                    <li><?php echo CHtml::link('Forms', array('document/index', 'id' => 180), array('class' => '')); ?></li>
-                                    <li><?php echo CHtml::link('Treasury Code', '#', array('class' => '')); ?></li>
+                                    <li><?php echo CHtml::link('Forms', array('document/index', 'id' => 170), array('class' => '')); ?></li>
+                                    <li><?php echo CHtml::link('Treasury Code', array('content/index', 'id' => 171), array('class' => '')); ?></li>   
+                                    <li><?php echo CHtml::link('VAT at Source', array('content/index', 'id' => 172), array('class' => '')); ?></li> 
                                     <li><?php echo CHtml::link('FAQ', array('content/view', 'id' => 36), array('class' => '')); ?></li>
                                 </ul>
                             </li> <!-- dropdown -->

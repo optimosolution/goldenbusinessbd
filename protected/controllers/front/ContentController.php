@@ -167,7 +167,7 @@ class ContentController extends Controller {
         $criteria = new CDbCriteria;
         $criteria->select = '*';
         $criteria->addCondition('state=1 AND catid=' . $id . ' OR catid IN(SELECT c.id FROM {{content_category}} c WHERE c.parent_id=' . $id . ')');
-        $criteria->order = 'created DESC';
+        $criteria->order = 'ordering ASC, created DESC';
 
         $dataProvider = new CActiveDataProvider('Content', array(
             'criteria' => $criteria,
