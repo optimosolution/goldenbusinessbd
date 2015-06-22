@@ -394,6 +394,55 @@ class Controller extends CController {
         echo '</div>';
     }
 
+    public function get_content_subcategory_list_it($id) {
+        $array = Yii::app()->db->createCommand()
+                ->select('id,title,created_time')
+                ->from('{{content_category}}')
+                ->where('published=1 AND parent_id=' . $id)
+                ->order('ordering ASC')
+                //->order('rand()')
+                //->limit(10)
+                ->queryAll();
+        echo '<div class="pricign-box pricign-box-pro animated fadeInUp animation-delay-9">';
+        echo '<div class="pricing-box-header">';
+        echo '<h2>' . ContentCategory::getCategoryName($id) . '</h2>';
+        echo '</div>';
+        echo '<div class="pricing-box-content">';
+        echo '<ul>';
+        foreach ($array as $key => $values) {
+            echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link($values['title'], array('/content/index', 'id' => $values['id'])) . '</li>';
+        }
+        echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link('SRO', array('sro/index', 'id' => 1)) . '</li>';
+        echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link('Forms', array('document/index', 'id' => 73)) . '</li>';
+        echo '</ul>';
+        echo '</div>';
+        echo '</div>';
+    }
+
+    public function get_content_subcategory_list_vat($id) {
+        $array = Yii::app()->db->createCommand()
+                ->select('id,title,created_time')
+                ->from('{{content_category}}')
+                ->where('published=1 AND parent_id=' . $id)
+                ->order('ordering ASC')
+                //->order('rand()')
+                //->limit(10)
+                ->queryAll();
+        echo '<div class="pricign-box pricign-box-pro animated fadeInUp animation-delay-9">';
+        echo '<div class="pricing-box-header">';
+        echo '<h2>' . ContentCategory::getCategoryName($id) . '</h2>';
+        echo '</div>';
+        echo '<div class="pricing-box-content">';
+        echo '<ul>';
+        foreach ($array as $key => $values) {
+            echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link($values['title'], array('/content/index', 'id' => $values['id'])) . '</li>';
+        }
+        echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link('SRO', array('sro/index', 'id' => 3)) . '</li>';
+        echo '</ul>';
+        echo '</div>';
+        echo '</div>';
+    }
+
     public function get_weblink__list($catid) {
         $array = Yii::app()->db->createCommand()
                 ->select('id,title,click_url,created_on')
