@@ -136,6 +136,15 @@ class ContentCategory extends CActiveRecord {
             return $value->title;
         }
     }
+    
+    public static function getParentCategoryName($id) {
+        $value = ContentCategory::model()->findByAttributes(array('id' => $id));
+        if (empty($value->parent_id)) {
+            return null;
+        } else {
+            return ContentCategory::getCategoryName($value->parent_id);
+        }
+    }
 
     public static function get_category_new($model, $field) {
         $parent1 = Yii::app()->db->createCommand()

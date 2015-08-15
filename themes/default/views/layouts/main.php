@@ -71,8 +71,8 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Income Tax <b class="caret"></b></a>
                                 <ul class="dropdown-menu">                                    
-                                    <li><?php echo CHtml::link('Ordinance', array('content/index', 'id' => 193), array('class' => '')); ?></li>
-                                    <li><?php echo CHtml::link('Rules', array('content/index', 'id' => 75), array('class' => '')); ?></li>
+                                    <li><?php echo CHtml::link('Ordinance', array('content/ordinance'), array('class' => '')); ?></li>
+                                    <li><?php echo CHtml::link('Rules', array('content/rules', 'id' => 75), array('class' => '')); ?></li>
                                     <li><?php echo CHtml::link('Finance Act', array('document/index', 'id' => 209), array('class' => '')); ?></li>
                                     <li><?php echo CHtml::link('Paripatra', array('content/index', 'id' => 214), array('class' => '')); ?></li>        
                                     <li>
@@ -88,7 +88,7 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">VAT <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><?php echo CHtml::link('Law', array('content/index', 'id' => 34), array('class' => '')); ?></li>
-                                    <li><?php echo CHtml::link('Rules', array('content/index', 'id' => 35), array('class' => '')); ?></li>
+                                    <li><?php echo CHtml::link('Rules', array('content/rules', 'id' => 35), array('class' => '')); ?></li>
                                     <li>
                                         <?php //echo CHtml::link('SRO', array('document/index', 'id' => 78), array('class' => '')); ?>
                                         <?php echo CHtml::link('SRO', array('sro/index', 'id' => 3), array('class' => '')); ?>

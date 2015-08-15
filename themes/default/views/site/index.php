@@ -83,7 +83,7 @@
                 <?php
                 $this->widget('application.extensions.fbLikeBox.fbLikeBox', array(
                     'likebox' => array(
-                        'url' => 'https://facebook.com/GoldenBangladesh',
+                        'url' => 'https://www.facebook.com/GoldenBangladesh',
                         'header' => 'true',
                         'width' => '360',
                         'height' => '500',

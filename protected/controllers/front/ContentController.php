@@ -25,7 +25,7 @@ class ContentController extends Controller {
     public function accessRules() {
         return array(
             array('allow', // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view'),
+                'actions' => array('index', 'view', 'ordinance', 'chapter', 'ordinanceview', 'rules'),
                 'users' => array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -40,6 +40,55 @@ class ContentController extends Controller {
                 'users' => array('*'),
             ),
         );
+    }
+
+    public function actionRules($id) {
+        $criteria = new CDbCriteria;
+        $criteria->select = '*';
+        $criteria->addCondition('state=1 AND catid=' . $id . ' OR catid IN(SELECT c.id FROM {{content_category}} c WHERE c.parent_id=' . $id . ')');
+        $criteria->order = 'ordering ASC, created DESC';
+
+        $dataProvider = new CActiveDataProvider('Content', array(
+            'criteria' => $criteria,
+            'pagination' => array(
+                'pageSize' => Yii::app()->params['pageSize20'],
+            ),
+        ));
+
+        $this->render('rules', array(
+            'dataProvider' => $dataProvider,
+        ));
+    }
+
+    public function actionOrdinance() {
+        $this->render('ordinance');
+    }
+
+    public function actionChapter($id) {
+        $criteria = new CDbCriteria;
+        $criteria->select = '*';
+        $criteria->addCondition('state=1 AND catid=' . $id . ' OR catid IN(SELECT c.id FROM {{content_category}} c WHERE c.parent_id=' . $id . ')');
+        $criteria->order = 'ordering ASC, created DESC';
+
+        $dataProvider = new CActiveDataProvider('Content', array(
+            'criteria' => $criteria,
+            'pagination' => array(
+                'pageSize' => Yii::app()->params['pageSize50'],
+            ),
+        ));
+
+        $this->render('chapter', array(
+            'dataProvider' => $dataProvider,
+        ));
+    }
+
+    public function actionOrdinanceview($id) {
+        Yii::app()->clientScript->registerMetaTag($this->getMetaTagDesc($id), 'description');
+        Yii::app()->clientScript->registerMetaTag($this->getMetaTagKey($id), 'keywords');
+        Yii::app()->db->createCommand('UPDATE {{content}} SET hits = hits+1 WHERE id=' . $id)->execute();
+        $this->render('ordinanceview', array(
+            'model' => $this->loadModel($id),
+        ));
     }
 
     /**

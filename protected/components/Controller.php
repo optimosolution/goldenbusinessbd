@@ -371,6 +371,46 @@ class Controller extends CController {
         echo '</ul>';
     }
 
+    public function get_content_list_inner($id) {
+        $array = Yii::app()->db->createCommand()
+                ->select('*')
+                ->from('{{content}}')
+                ->where('state=1 AND catid=' . $id)
+                ->order('ordering ASC')
+                ->queryAll();
+        echo '<div class="pricing-box-content">';
+        echo '<ul>';
+        foreach ($array as $key => $values) {
+            echo '<li> ' . CHtml::link($values['title'], array('/content/ordinanceview', 'id' => $values['id'])) . '</li>';
+        }
+        echo '</ul>';
+        echo '</ul>';
+    }
+
+    function html2txt($document) {
+        $search = array('@<script[^>]*?>.*?</script>@si', // Strip out javascript
+            '@<[\/\!]*?[^<>]*?>@si', // Strip out HTML tags
+            '@<style[^>]*?>.*?</style>@siU', // Strip style tags properly
+            '@<![\s\S]*?--[ \t\n\r]*>@'         // Strip multi-line comments including CDATA
+        );
+        $text = preg_replace($search, '', $document);
+        return $text;
+    }
+
+    public function text_cut($text, $length = 200, $dots = true) {
+        $text = trim(preg_replace('#[\s\n\r\t]{2,}#', ' ', $text));
+        $text_temp = $text;
+        while (substr($text, $length, 1) != " ") {
+            $length++;
+            if ($length > strlen($text)) {
+                break;
+            }
+        }
+        //$text = substr($text, 0, $length);
+        $text = mb_substr($text, 0, $length, 'UTF-8');
+        return $text . ( ( $dots == true && $text != '' && strlen($text_temp) > $length ) ? '...' : '');
+    }
+
     public function get_content_subcategory_list($id) {
         $array = Yii::app()->db->createCommand()
                 ->select('id,title,created_time')
@@ -387,7 +427,13 @@ class Controller extends CController {
         echo '<div class="pricing-box-content">';
         echo '<ul>';
         foreach ($array as $key => $values) {
-            echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link($values['title'], array('/content/index', 'id' => $values['id'])) . '</li>';
+            if ($values['id'] == 193) {
+                echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link($values['title'], array('/content/ordinance')) . '</li>';
+            } elseif ($values['id'] == 35 or $values['id'] == 75) {
+                echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link($values['title'], array('/content/rules', 'id' => $values['id'])) . '</li>';
+            } else {
+                echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link($values['title'], array('/content/index', 'id' => $values['id'])) . '</li>';
+            }
         }
         echo '</ul>';
         echo '</div>';
