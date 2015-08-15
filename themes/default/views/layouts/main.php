@@ -75,11 +75,9 @@
                                     <li><?php echo CHtml::link('Rules', array('content/rules', 'id' => 75), array('class' => '')); ?></li>
                                     <li><?php echo CHtml::link('Finance Act', array('document/index', 'id' => 209), array('class' => '')); ?></li>
                                     <li><?php echo CHtml::link('Paripatra', array('content/index', 'id' => 214), array('class' => '')); ?></li>        
-                                    <li>
-                                        <?php //echo CHtml::link('SRO', array('content/index', 'id' => 72), array('class' => '')); ?>
-                                        <?php echo CHtml::link('SRO', array('sro/index', 'id' => 1), array('class' => '')); ?>
-                                    </li>
-                                    <li><?php echo CHtml::link('Income Tax Accounts Code', array('content/index', 'id' => 164), array('class' => '')); ?></li>                                                                        
+                                    <li><?php echo CHtml::link('SRO', array('sro/index', 'id' => 1), array('class' => '')); ?></li>
+                                    <li><?php echo CHtml::link('Income Tax Accounts Code', array('content/index', 'id' => 164), array('class' => '')); ?></li>
+                                    <li><?php echo CHtml::link('Pevailing Rates of Gross Profit', array('content/index', 'id' => 165), array('class' => '')); ?></li>
                                     <li><?php echo CHtml::link('FAQs', array('content/index', 'id' => 76), array('class' => '')); ?></li>
                                     <li><?php echo CHtml::link('Forms', array('document/index', 'id' => 73), array('class' => '')); ?></li>
                                 </ul>
@@ -88,15 +86,21 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">VAT <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><?php echo CHtml::link('Law', array('content/index', 'id' => 34), array('class' => '')); ?></li>
+<<<<<<< HEAD
                                     <li><?php echo CHtml::link('Rules', array('content/rules', 'id' => 35), array('class' => '')); ?></li>
                                     <li>
                                         <?php //echo CHtml::link('SRO', array('document/index', 'id' => 78), array('class' => '')); ?>
                                         <?php echo CHtml::link('SRO', array('sro/index', 'id' => 3), array('class' => '')); ?>
                                     </li>
+=======
+                                    <li><?php echo CHtml::link('Rules', array('content/index', 'id' => 35), array('class' => '')); ?></li>
+                                    <li><?php echo CHtml::link('SRO', array('sro/index', 'id' => 3), array('class' => '')); ?></li>
+>>>>>>> origin/master
                                     <li><?php echo CHtml::link('Forms', array('document/index', 'id' => 170), array('class' => '')); ?></li>
                                     <li><?php echo CHtml::link('Treasury Code', array('content/index', 'id' => 171), array('class' => '')); ?></li>   
                                     <li><?php echo CHtml::link('VAT at Source', array('content/index', 'id' => 172), array('class' => '')); ?></li> 
                                     <li><?php echo CHtml::link('FAQ', array('content/view', 'id' => 36), array('class' => '')); ?></li>
+                                    <li><?php echo CHtml::link('Act English Version', array('content/index', 'id' => 173), array('class' => '')); ?></li>
                                 </ul>
                             </li> <!-- dropdown -->
                             <li class="">
@@ -239,7 +243,7 @@
                 document.write('<script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery-1.10.2.min.js"><\/script>');
             }
         </script>
-<!--        <script src="<?php //echo Yii::app()->theme->baseUrl;  ?>/js/jquery-1.10.2.min.js"></script>-->
+<!--        <script src="<?php //echo Yii::app()->theme->baseUrl;   ?>/js/jquery-1.10.2.min.js"></script>-->
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.cookie.js"></script>
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/bootstrap.min.js"></script>
         <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/jquery.mixitup.min.js"></script>

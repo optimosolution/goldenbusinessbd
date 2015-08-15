@@ -188,9 +188,10 @@ class DocumentController extends BackEndController {
 
             try {
                 $myFile = Yii::app()->basePath . '/../uploads/documents/' . $model->doc_file;
-                if (!empty($model->doc_file)) {
-                    unlink($myFile);
-                }
+                if ((is_file($myFile)) && (file_exists($myFile))) {
+                        unlink($myFile);
+                    }
+                    
                 $this->loadModel($id)->delete();
 
                 if (!isset($_GET['ajax'])) {

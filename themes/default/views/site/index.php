@@ -2,10 +2,10 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">   
-                <?php $this->get_content_subcategory_list(194); ?>
+                <?php $this->get_content_subcategory_list_it(194); ?>
             </div>
             <div class="col-md-4">                 
-                <?php $this->get_content_subcategory_list(192); ?>
+                <?php $this->get_content_subcategory_list_vat(192); ?>
             </div>            
             <div class="col-md-4">       
                 <?php //$this->get_weblink__list(185); ?>
