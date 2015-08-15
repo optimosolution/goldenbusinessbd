@@ -76,7 +76,7 @@
                 <?php $this->get_latest_business_blog(87); ?>
             </div>
             <div class="col-md-4">
-                <?php $this->get_weblink__list(187); ?>                
+                <?php $this->get_weblink_list_more(187); ?>                
             </div>
             <div class="col-md-4">
                 <h2 class="section-title">FACEBOOK LIKE BOX</h2>
@@ -121,7 +121,7 @@
                 <?php $this->get_latest_business_blog(31); ?>
             </div>
             <div class="col-md-4">
-                <?php $this->get_weblink__list(188); ?>
+                <?php $this->get_weblink_list_more(188); ?>
             </div>
             <div class="col-md-4">
                 <h2 class="section-title">BUSINESS VIDEO</h2>
@@ -150,7 +150,7 @@
                 <?php $this->get_latest_profile(185); ?>
             </div>
             <div class="col-md-4">
-                <?php $this->get_weblink__list(184); ?>
+                <?php $this->get_weblink_list_more(184); ?>
             </div>
         </div>
     </div> <!-- container -->

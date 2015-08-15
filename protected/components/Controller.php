@@ -512,6 +512,30 @@ class Controller extends CController {
         echo '</div>';
     }
 
+    public function get_weblink_list_more($catid) {
+        $array = Yii::app()->db->createCommand()
+                ->select('id,title,click_url,created_on')
+                ->from('{{weblink}}')
+                ->where('published=1 AND category_id=' . $catid)
+                //->order('title ASC')
+                ->order('rand()')
+                ->limit(10)
+                ->queryAll();
+        echo '<div class="pricign-box animated fadeInUp animation-delay-7">';
+        echo '<div class="pricing-box-header">';
+        echo '<h2>' . WeblinkCategory::get_category($catid) . '</h2>';
+        echo '</div>';
+        echo '<div class="pricing-box-content">';
+        echo '<ul>';
+        foreach ($array as $key => $values) {
+            echo '<li><i class="fa fa-cloud-download"></i> ' . CHtml::link($values['title'], $values['click_url'], array('class' => '', 'target' => '_blank')) . '</li>';
+        }
+        echo '<li>' . CHtml::link('More ' . WeblinkCategory::get_category($catid), array('/weblink/index', 'id' => $catid), array('class' => 'btn btn-primary btn-xs pull-right', 'style' => '')) . '</li>';
+        echo '</ul>';
+        echo '</div>';
+        echo '</div>';
+    }
+
     public function get_document_category_list() {
         $array = Yii::app()->db->createCommand()
                 ->select('id,title,created_time')
