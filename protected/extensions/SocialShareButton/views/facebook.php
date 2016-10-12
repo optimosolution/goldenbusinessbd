@@ -15,6 +15,6 @@ else
         js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
-<div class="fb-share-button" data-href="<?php echo 'http://www.learnquranbd.com/' . Yii::app()->request->url; ?>" data-width="200" data-type="<?= $data_type ?>"></div>
+<div class="fb-share-button" data-href="<?php echo 'http://www.goldenbusinessbd.com/' . Yii::app()->request->url; ?>" data-width="200" data-type="<?= $data_type ?>"></div>
 <?php
 //echo Yii::app()->createAbsoluteUrl(Yii::app()->request->url); ?>

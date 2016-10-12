@@ -456,7 +456,13 @@ class Controller extends CController {
         echo '<div class="pricing-box-content">';
         echo '<ul>';
         foreach ($array as $key => $values) {
-            echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link($values['title'], array('/content/index', 'id' => $values['id'])) . '</li>';
+           if ($values['id'] == 193) {
+                echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link($values['title'], array('/content/ordinance')) . '</li>';
+            } elseif ($values['id'] == 35 or $values['id'] == 75) {
+                echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link($values['title'], array('/content/rules', 'id' => $values['id'])) . '</li>';
+            } else {
+                echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link($values['title'], array('/content/index', 'id' => $values['id'])) . '</li>';
+            }
         }
         echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link('SRO', array('sro/index', 'id' => 1)) . '</li>';
         echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link('Forms', array('document/index', 'id' => 73)) . '</li>';
@@ -481,7 +487,13 @@ class Controller extends CController {
         echo '<div class="pricing-box-content">';
         echo '<ul>';
         foreach ($array as $key => $values) {
-            echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link($values['title'], array('/content/index', 'id' => $values['id'])) . '</li>';
+            if ($values['id'] == 193) {
+                echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link($values['title'], array('/content/ordinance')) . '</li>';
+            } elseif ($values['id'] == 35 or $values['id'] == 75) {
+                echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link($values['title'], array('/content/rules', 'id' => $values['id'])) . '</li>';
+            } else {
+                echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link($values['title'], array('/content/index', 'id' => $values['id'])) . '</li>';
+            }
         }
         echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link('SRO', array('sro/index', 'id' => 3)) . '</li>';
         echo '</ul>';
