@@ -75,7 +75,7 @@ class UserController extends Controller {
             $model->registerDate = new CDbExpression('NOW()');
             $model->activation = md5(microtime());
             $model->group_id = 7;
-            $model->status = 4;
+            $model->status = 1;
             $model->user_type = 0;
             if ($model->validate()) {
                 //Picture upload script
@@ -97,7 +97,7 @@ class UserController extends Controller {
 
                     $model_profile->user_id = $model->id;
                     $model_profile->save();
-                    Yii::app()->user->setFlash('success', 'Registration completed successfully');
+                    Yii::app()->user->setFlash('success', 'Registration was completed successfully!');
                     $this->redirect(array('view', 'id' => $model->id));
                 }
             }

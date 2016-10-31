@@ -20,24 +20,7 @@
         <!--[if lt IE 9]>
             <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/html5shiv.js"></script>
             <script src="<?php echo Yii::app()->theme->baseUrl; ?>/js/respond.min.js"></script>
-        <![endif]-->
-        <!-- Piwik -->
-        <script type="text/javascript">
-          var _paq = _paq || [];
-          _paq.push(["setCookieDomain", "*.www.goldenbusinessbd.com"]);
-          _paq.push(["setDomains", ["*.www.goldenbusinessbd.com"]]);
-          _paq.push(['trackPageView']);
-          _paq.push(['enableLinkTracking']);
-          (function() {
-            var u="//wa.optimosolution.com/";
-            _paq.push(['setTrackerUrl', u+'piwik.php']);
-            _paq.push(['setSiteId', '2']);
-            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-          })();
-        </script>
-        <noscript><p><img src="//wa.optimosolution.com/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
-        <!-- End Piwik Code -->
+        <![endif]-->        
     </head>
     <body>
         <div class="boxed animated fadeIn animation-delay-5">
@@ -274,5 +257,30 @@
         <script type="text/javascript">
             SyntaxHighlighter.all()
         </script>
+        <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        ga('create', 'UA-39621594-6', 'auto');
+        ga('send', 'pageview');
+      </script>
+      <!-- Piwik -->
+        <script type="text/javascript">
+          var _paq = _paq || [];
+          _paq.push(["setCookieDomain", "*.www.goldenbusinessbd.com"]);
+          _paq.push(["setDomains", ["*.www.goldenbusinessbd.com"]]);
+          _paq.push(['trackPageView']);
+          _paq.push(['enableLinkTracking']);
+          (function() {
+            var u="//wa.optimosolution.com/";
+            _paq.push(['setTrackerUrl', u+'piwik.php']);
+            _paq.push(['setSiteId', '2']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+          })();
+        </script>
+        <noscript><p><img src="//wa.optimosolution.com/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
+        <!-- End Piwik Code -->
     </body>
 </html> 
