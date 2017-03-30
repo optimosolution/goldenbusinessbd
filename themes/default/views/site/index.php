@@ -9,7 +9,8 @@
             </div>            
             <div class="col-md-4">       
                 <?php //$this->get_weblink__list(185); ?>
-                <?php $this->get_content_subcategory_list(207); ?>
+                <?php //$this->get_content_subcategory_list(207); ?>
+                <?php $this->get_content_list(250); ?>
             </div>
         </div>
     </div> <!-- container -->

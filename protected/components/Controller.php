@@ -456,7 +456,7 @@ class Controller extends CController {
         echo '<div class="pricing-box-content">';
         echo '<ul>';
         foreach ($array as $key => $values) {
-           if ($values['id'] == 193) {
+            if ($values['id'] == 193) {
                 echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link($values['title'], array('/content/ordinance')) . '</li>';
             } elseif ($values['id'] == 35 or $values['id'] == 75) {
                 echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link($values['title'], array('/content/rules', 'id' => $values['id'])) . '</li>';
@@ -608,6 +608,27 @@ class Controller extends CController {
             echo CHtml::link($banner, $values['clickurl'], array('target' => '_blank'));
             echo '</div>';
         }
+    }
+
+    public function get_content_list($id) {
+        $array = Yii::app()->db->createCommand()
+                ->select('*')
+                ->from('{{content}}')
+                ->where('state=1 AND catid=' . $id)
+                ->order('ordering ASC')
+                ->queryAll();
+        echo '<div class="pricign-box pricign-box-pro animated fadeInUp animation-delay-9">';
+        echo '<div class="pricing-box-header">';
+        echo '<h2>' . ContentCategory::getCategoryName($id) . '</h2>';
+        echo '</div>';
+        echo '<div class="pricing-box-content">';
+        echo '<ul>';
+        foreach ($array as $key => $values) {
+            echo '<li><i class="fa fa-inbox"></i> ' . CHtml::link($values['title'], array('/content/view', 'id' => $values['id'])) . '</li>';
+        }
+        echo '</ul>';
+        echo '</div>';
+        echo '</div>';
     }
 
 }
