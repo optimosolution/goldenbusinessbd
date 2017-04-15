@@ -97,4 +97,19 @@ class ExamAnswer extends CActiveRecord {
         return parent::model($className);
     }
 
+    public static function getCorrect($id) {
+        $model = ExamAnswer::model()->find(array('condition' => 'question=' . (int) $id . ' AND correct=1'));
+        return $model->id;
+    }
+
+    public static function getData($id, $field) {
+        //$value = ExamAnswer::model()->findByPk($id);
+        $value = ExamAnswer::model()->findByAttributes(array('id' => $id));
+        if (empty($value->$field)) {
+            return null;
+        } else {
+            return $value->$field;
+        }
+    }
+
 }
