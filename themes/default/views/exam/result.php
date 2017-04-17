@@ -11,7 +11,7 @@ $this->breadcrumbs = array(
 <h4>Correct: <?php echo Exam::getTotalCorrect($_REQUEST['id']); ?></h4>
 <h4>Incorrect: <?php echo Exam::getTotalIncorrect($_REQUEST['id']); ?></h4>
 <?php
-$array = Exam::model()->findAll(array('condition' => 'category=' . (int) $_REQUEST["id"]));
+$array = Exam::model()->findAll(array('condition' => 'category=' . (int) $_REQUEST["id"].' AND user='.Yii::app()->user->id));
 echo '<ol style="font-size: 16px;">';
 foreach ($array as $key => $value) {
     echo '<li style="margin-top:20px;">' . ExamQuestion::getData($value['question'], 'question') . '</li>';

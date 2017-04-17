@@ -107,17 +107,17 @@ class Exam extends CActiveRecord {
     }
 
     public static function getTotalAnswer($id) {
-        $value = Exam::model()->findAll(array('condition' => 'category=' . (int) $id));
+        $value = Exam::model()->findAll(array('condition' => 'category=' . (int) $id.' AND user='.Yii::app()->user->id));
         return count($value);
     }
 
     public static function getTotalCorrect($id) {
-        $value = Exam::model()->findAll(array('condition' => 'category=' . (int) $id . ' AND answer=correct'));
+        $value = Exam::model()->findAll(array('condition' => 'category=' . (int) $id . ' AND answer=correct AND user='.Yii::app()->user->id));
         return count($value);
     }
 
     public static function getTotalIncorrect($id) {
-        $value = Exam::model()->findAll(array('condition' => 'category=' . (int) $id . ' AND answer!=correct'));
+        $value = Exam::model()->findAll(array('condition' => 'category=' . (int) $id . ' AND answer!=correct AND user='.Yii::app()->user->id));
         return count($value);
     }
 
