@@ -64,7 +64,6 @@ $this->breadcrumbs = array(
                 <?php $this->endWidget(); ?>
             </section>
         </div>
-
         <div class="col-md-4">
             <section>
                 <div class="panel panel-primary">
@@ -73,14 +72,13 @@ $this->breadcrumbs = array(
                         <h4 class="section-title">Contacts</h4>
                         <address>
                             <strong>Golden Bangladesh</strong><br>
-                            House#6 (Ground Floor)<br>
-                            Road-1, Sector-4, Uttara<br>
+                            House#07 (Ground Floor)<br>
+                            Road-2/B, Sector-04, Uttara<br>
                             Dhaka, 1230<br>
-                            <abbr title="Phone">P:</abbr> 8951233 <br>
-                            <abbr title="Mobile">M:</abbr> +880 01970079001-2<br />
-                            <abbr title="Mobile">M:</abbr> +880 01970079004-6 <br />
+                            <abbr title="Cell">M:</abbr> +880 1911485949<br />
+                            <abbr title="Office">O:</abbr> +880 1970079001-6 <br />
                             Mail: <a href="mailto:goldenassociates@gmail.com">goldenassociates@gmail.com</a>
-                        </address>
+                        </address> 
                         <!-- Business Hours -->
                         <h4 class="section-title">Business Hours</h4>
                         <ul class="list-unstyled">
