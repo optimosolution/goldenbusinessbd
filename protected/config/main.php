@@ -61,7 +61,7 @@ return array(
         'session' => array(
             'class' => 'CDbHttpSession',
             'connectionID' => 'db',
-            'sessionName' => 'OPTIMO',
+            'sessionName' => 'GOLDENBUSINESSBD',
             'autoCreateSessionTable' => false,
             'sessionTableName' => 'os_yiisession',
             'cookieMode' => 'only',
